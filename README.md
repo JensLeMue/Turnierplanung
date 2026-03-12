@@ -28,7 +28,6 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 - Mindestabstand zwischen Turnieren derselben Altersklasse
 - DM am Saisonende mit kombinierten Altersklassen (U20+U15 etc.)
 - Damen- und Herrenwettbewerbe am selben Wochenende
-- Nationale Qualifikationsturniere bei bestimmten EFC/FIE-Events
 - Streckenoptimierung für gleichmäßige geografische Verteilung
 
 ## Voraussetzungen
@@ -70,9 +69,9 @@ EFC_Dublin,EFC,SEN,2026-10-18,false
 ### Beispiel `applications.csv`
 
 ```csv
-club,type,ageCategory
-Leverkusen,QB,SEN
-Reutlingen,QB,SEN
+club,type,ageCategory,venueAvailability
+Leverkusen,QB,SEN,all
+Reutlingen,QB,SEN,2026-10-18;2026-11-15;2027-02-20
 ```
 
 ## Projektstruktur
@@ -113,5 +112,4 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 - SoftConstraints für überlappende Altersgruppen.
 - Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
 - Output als Excelfile oder ähnliches zur Darstellung
-- Ergänzung Termine für Hallen (einfschränkung der Verfügbarkeit; unlimitiert bzw x mögliche Daten)
 - Ergänzung WM und EM als fixe Turniere. Dazu DM kurz vor WM zw em als Highlight der Saison.

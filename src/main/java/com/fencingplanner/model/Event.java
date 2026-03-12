@@ -15,6 +15,7 @@ private AgeCategory ageCategory;
 private Club club;
 private String type;
 private boolean countsAsNationalQ;
+private String venueAvailability;
 
 private Weekend fixedWeekend;
 
@@ -77,6 +78,14 @@ return countsAsNationalQ;
 
 public void setCountsAsNationalQ(boolean countsAsNationalQ){
 this.countsAsNationalQ=countsAsNationalQ;
+}
+
+public String getVenueAvailability(){
+return venueAvailability;
+}
+
+public void setVenueAvailability(String venueAvailability){
+this.venueAvailability=venueAvailability;
 }
 
 }

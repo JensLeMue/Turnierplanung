@@ -163,6 +163,7 @@ public class DataLoader {
                 String clubName = p[0];
                 String type = p[1];
                 AgeCategory age = AgeCategory.valueOf(p[2]);
+                String venueAvailability = p.length > 3 ? p[3] : "all";
 
                 Club club = clubs.get(clubName);
 
@@ -173,6 +174,7 @@ public class DataLoader {
                         club,
                         type
                 );
+                e.setVenueAvailability(venueAvailability);
 
                 events.add(e);
             }

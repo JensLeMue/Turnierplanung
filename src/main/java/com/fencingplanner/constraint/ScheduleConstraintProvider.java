@@ -14,7 +14,10 @@ return new Constraint[]{
 
 blockedWeekend(factory),
 fixedFIE(factory),
-fixedEFC(factory),qbEquivalentOverlap(factory),athleteOverlap(factory)
+fixedEFC(factory),
+qbEquivalentOverlap(factory),
+venueAvailability(factory),
+athleteOverlap(factory)
 
 };
 
@@ -71,6 +74,38 @@ b.getAgeCategory().canStartIn(a.getAgeCategory()))
 )
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("qb equivalent overlap");
+
+}
+
+private Constraint venueAvailability(ConstraintFactory factory){
+
+return factory.forEach(Event.class)
+
+.filter(e -> 
+e.getWeekend() != null
+&& e.getVenueAvailability() != null
+&& !e.getVenueAvailability().equals("all")
+&& !isWeekendAvailable(e)
+)
+
+.penalize(HardSoftScore.ONE_HARD).asConstraint("venue availability");
+
+}
+
+private boolean isWeekendAvailable(Event event){
+
+String availability = event.getVenueAvailability();
+String weekendDate = event.getWeekend().getDate().toString();
+
+String[] availableDates = availability.split(";");
+
+for(String date : availableDates){
+if(date.trim().equals(weekendDate)){
+return true;
+}
+}
+
+return false;
 
 }
 
