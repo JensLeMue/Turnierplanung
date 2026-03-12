@@ -113,3 +113,5 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 - Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
 - Output als Excelfile oder ähnliches zur Darstellung
 - Ergänzung WM und EM als fixe Turniere. Dazu DM kurz vor WM zw em als Highlight der Saison.
+- U14 Turniere müssen eingepflegt werdn in die csv
+- Terminrestruktionen von Bewerben müssen in die CSV eingepfelgt werden.
