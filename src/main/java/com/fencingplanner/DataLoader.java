@@ -97,6 +97,7 @@ public class DataLoader {
     private List<Event> loadFixedEvents(List<Weekend> weekends) {
 
         List<Event> events = new ArrayList<>();
+        long eventIdCounter = 1;
 
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(
@@ -115,7 +116,7 @@ public class DataLoader {
 
                 Club club = clubs.get(type);
 
-                Event e = new Event(name, age, club, type);
+                Event e = new Event(eventIdCounter++, name, age, club, type);
 
                 Optional<Weekend> weekend = weekends.stream()
                         .filter(w -> w.getDate().equals(date))
@@ -143,6 +144,7 @@ public class DataLoader {
     private List<Event> loadApplications() {
 
         List<Event> events = new ArrayList<>();
+        long eventIdCounter = 1000;
 
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(
@@ -163,6 +165,7 @@ public class DataLoader {
                 Club club = clubs.get(clubName);
 
                 Event e = new Event(
+                        eventIdCounter++,
                         type + "_" + age + "_" + counter++,
                         age,
                         club,

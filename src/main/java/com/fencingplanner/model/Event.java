@@ -1,10 +1,14 @@
 package com.fencingplanner.model;
 
 import ai.timefold.solver.core.api.domain.entity.PlanningEntity;
+import ai.timefold.solver.core.api.domain.lookup.PlanningId;
 import ai.timefold.solver.core.api.domain.variable.PlanningVariable;
 
 @PlanningEntity
 public class Event {
+
+@PlanningId
+private long id;
 
 private String name;
 private AgeCategory ageCategory;
@@ -19,13 +23,18 @@ private Weekend weekend;
 
 public Event(){}
 
-public Event(String name,AgeCategory ageCategory,Club club,String type){
+public Event(long id, String name, AgeCategory ageCategory, Club club, String type){
 
+this.id=id;
 this.name=name;
 this.ageCategory=ageCategory;
 this.club=club;
 this.type=type;
 
+}
+
+public long getId(){
+return id;
 }
 
 public String getName(){
