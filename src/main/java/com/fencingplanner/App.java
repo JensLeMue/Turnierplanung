@@ -22,6 +22,8 @@ public class App {
         Schedule solution = solver.solve(problem);
 
         System.out.println("\n===== RESULT =====\n");
+        System.out.println(String.format("%-20s %-25s %-6s %-4s -> %s", "Club", "Event", "Type", "Age", "Date"));
+        System.out.println("--------------------------------------------------------------------");
 
         solution.getEvents().stream()
                 .sorted(Comparator.comparing(e ->
@@ -33,9 +35,11 @@ public class App {
                     String date = e.getWeekend() == null
                             ? "UNASSIGNED"
                             : e.getWeekend().getDate().toString();
+                    String clubName = (e.getClub() == null) ? "UNKNOWN" : e.getClub().getName();
 
                     System.out.println(
-                            String.format("%-25s %-6s %-4s -> %s",
+                            String.format("%-20s %-25s %-6s %-4s -> %s",
+                                    clubName,
                                     e.getName(),
                                     e.getType(),
                                     e.getAgeCategory(),
