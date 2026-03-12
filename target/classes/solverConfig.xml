@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+    <solutionClass>com.fencingplanner.model.Schedule</solutionClass>
+    <entityClass>com.fencingplanner.model.Event</entityClass>
+
+    <scoreDirectorFactory>
+        <constraintProviderClass>com.fencingplanner.constraint.ScheduleConstraintProvider</constraintProviderClass>
+        <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
+    </scoreDirectorFactory>
+
+    <termination>
+        <secondsSpentLimit>30</secondsSpentLimit>
+    </termination>
+
+    <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+    </constructionHeuristic>
+
+    <localSearch>
+        <localSearchType>TABU_SEARCH</localSearchType>
+        <acceptor>
+            <entityTabuSize>5</entityTabuSize>
+        </acceptor>
+        <termination>
+            <secondsSpentLimit>60</secondsSpentLimit>
+        </termination>
+    </localSearch>
+</solver>
