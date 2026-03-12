@@ -46,5 +46,14 @@ public class App {
                                     date)
                     );
                 });
+
+        // Excel-Export
+        try {
+            ExcelScheduleExporter exporter = new ExcelScheduleExporter(solution, "Turnierplanung.xlsx");
+            exporter.export();
+        } catch (java.io.IOException e) {
+            System.err.println("Fehler beim Excel-Export: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

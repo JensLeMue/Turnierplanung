@@ -1,5 +1,6 @@
 /Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/App.java
 /Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/DataLoader.java
+/Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/ExcelScheduleExporter.java
 /Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/constraint/ScheduleConstraintProvider.java
 /Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/model/AgeCategory.java
 /Users/jens/Downloads/GitClones/Turnierplanung/src/main/java/com/fencingplanner/model/Club.java
