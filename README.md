@@ -109,16 +109,3 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 ## Lizenz
 
 *TODO: Lizenz ergänzen*
-
-
-
-Dr. Ing. h.c. F. Porsche Aktiengesellschaft
-Sitz der Gesellschaft: Stuttgart
-Registergericht: Amtsgericht Stuttgart HRB-Nr. 730623
-Vorsitzender des Aufsichtsrats: Dr. Wolfgang Porsche
-Vorstand: Dr. Michael Leiters, Vorsitzender
-Dr. Michael Steiner, stellvertretender Vorsitzender
-Matthias Becker, Dr. Jochen Breckner, Sajjad Khan,
-Albrecht Reimold, Vera Schalwig, Joachim Scharnagl
-Informationen zum Umgang mit Ihren Daten finden Sie in unseren Datenschutzhinweisen.
-Die vorgenannten Angaben werden jeder E-Mail automatisch hinzugefügt. Dies ist kein Anerkenntnis, dass es sich beim Inhalt dieser E-Mail um eine rechtsverbindliche Erklärung der Porsche AG handelt. Erklärungen, die die Porsche AG verpflichten, bedürfen jeweils der Unterschrift durch zwei zeichnungsberechtigte Personen der AG.
