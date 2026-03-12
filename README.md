@@ -114,3 +114,4 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 - Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
 - Output als Excelfile oder ähnliches zur Darstellung
 - Ergänzung Termine für Hallen (einfschränkung der Verfügbarkeit; unlimitiert bzw x mögliche Daten)
+- Ergänzung WM und EM als fixe Turniere. Dazu DM kurz vor WM zw em als Highlight der Saison.
