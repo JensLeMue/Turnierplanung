@@ -109,3 +109,7 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 ## Lizenz
 
 *TODO: Lizenz ergänzen*
+
+
+SoftConstraints für überlappende Altersgruppen.
+Soft Constraints fpr bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
