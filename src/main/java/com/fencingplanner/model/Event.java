@@ -14,6 +14,7 @@ private String name;
 private AgeCategory ageCategory;
 private Club club;
 private String type;
+private boolean countsAsNationalQ;
 
 private Weekend fixedWeekend;
 
@@ -30,6 +31,7 @@ this.name=name;
 this.ageCategory=ageCategory;
 this.club=club;
 this.type=type;
+this.countsAsNationalQ=false;
 
 }
 
