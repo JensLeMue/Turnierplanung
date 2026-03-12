@@ -1,4 +1,4 @@
-package com.fencingplanner.solver;
+package com.fencingplanner.constraint;
 
 import com.fencingplanner.model.*;
 
@@ -27,7 +27,7 @@ return factory.forEach(Event.class)
 
 .filter(e -> e.getWeekend()!=null && e.getWeekend().isBlocked())
 
-.penalize("blocked weekend",HardSoftScore.ONE_HARD);
+.penalize(HardSoftScore.ONE_HARD).asConstraint("blocked weekend");
 
 }
 
@@ -40,7 +40,7 @@ e.getClub().getName().equals("FIE")
 && e.getFixedWeekend()!=null
 && e.getWeekend()!=e.getFixedWeekend())
 
-.penalize("FIE fixed",HardSoftScore.ONE_HARD);
+.penalize(HardSoftScore.ONE_HARD).asConstraint("FIE fixed");
 
 }
 
@@ -53,7 +53,7 @@ e.getClub().getName().equals("EFC")
 && e.getFixedWeekend()!=null
 && e.getWeekend()!=e.getFixedWeekend())
 
-.penalize("EFC fixed",HardSoftScore.ONE_HARD);
+.penalize(HardSoftScore.ONE_HARD).asConstraint("EFC fixed");
 
 }
 
@@ -70,7 +70,7 @@ b.getAgeCategory().canStartIn(a.getAgeCategory())
 
 )
 
-.penalize("athlete overlap",HardSoftScore.ONE_HARD);
+.penalize(HardSoftScore.ONE_HARD).asConstraint("athlete overlap");
 
 }
 
