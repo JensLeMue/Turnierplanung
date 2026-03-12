@@ -110,6 +110,7 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 
 *TODO: Lizenz ergänzen*
 
-- ** SoftConstraints für überlappende Altersgruppen.
-- ** Soft Constraints fpr bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
-- ** Output als Excelfile oder ähnliches zur Darstellung
+- SoftConstraints für überlappende Altersgruppen.
+- Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
+- Output als Excelfile oder ähnliches zur Darstellung
+- Ergänzung Termine für Hallen (einfschränkung der Verfügbarkeit; unlimitiert bzw x mögliche Daten)

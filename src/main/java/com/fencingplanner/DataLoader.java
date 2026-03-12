@@ -113,10 +113,12 @@ public class DataLoader {
                 String type = p[1];
                 AgeCategory age = AgeCategory.valueOf(p[2]);
                 LocalDate date = LocalDate.parse(p[3]);
+                boolean qbEquivalent = Boolean.parseBoolean(p[4]);
 
                 Club club = clubs.get(type);
 
                 Event e = new Event(eventIdCounter++, name, age, club, type);
+                e.setCountsAsNationalQ(qbEquivalent);
 
                 Optional<Weekend> weekend = weekends.stream()
                         .filter(w -> w.getDate().equals(date))

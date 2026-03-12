@@ -71,4 +71,12 @@ public void setFixedWeekend(Weekend fixedWeekend){
 this.fixedWeekend=fixedWeekend;
 }
 
+public boolean isCountsAsNationalQ(){
+return countsAsNationalQ;
+}
+
+public void setCountsAsNationalQ(boolean countsAsNationalQ){
+this.countsAsNationalQ=countsAsNationalQ;
+}
+
 }

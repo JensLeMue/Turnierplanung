@@ -14,8 +14,7 @@ return new Constraint[]{
 
 blockedWeekend(factory),
 fixedFIE(factory),
-fixedEFC(factory),
-athleteOverlap(factory)
+fixedEFC(factory),qbEquivalentOverlap(factory),athleteOverlap(factory)
 
 };
 
@@ -54,6 +53,24 @@ e.getClub().getName().equals("EFC")
 && e.getWeekend()!=e.getFixedWeekend())
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("EFC fixed");
+
+}
+
+private Constraint qbEquivalentOverlap(ConstraintFactory factory){
+
+return factory.forEachUniquePair(Event.class,
+Joiners.equal(Event::getWeekend))
+
+.filter((a,b)->
+(a.isCountsAsNationalQ() || b.isCountsAsNationalQ())
+&&
+(a.getAgeCategory().canStartIn(b.getAgeCategory())
+||
+b.getAgeCategory().canStartIn(a.getAgeCategory()))
+
+)
+
+.penalize(HardSoftScore.ONE_HARD).asConstraint("qb equivalent overlap");
 
 }
 
