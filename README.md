@@ -8,7 +8,7 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 
 ## Features
 
-- **Fixe internationale Termine**: FIE- und EFC-Turniere werden als unveränderliche Vorgaben übernommen
+- **Fixe internationale Termine**: FIE- und EFC-Turniere werden als unveränderliche Vorgaben übernommen, DMs zum Saisonende nach den Q-Turnieren, vor der EM/WM. Da muss man die Daten für haben.
 - **Altersklassen**: VET, SEN, U23, U20, U17, U15, U14 werden berücksichtigt
 - **Bewerbungen der Ausrichter**: Vereine bewerben sich als Ausrichter und werden auf die Saison verteilt
 - **Konflikterkennung**: Überlappende Altersklassen (z. B. U20-Athleten dürfen auch bei SEN starten) werden nie auf dasselbe Wochenende gelegt
@@ -106,12 +106,11 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 - **Local Search**: TABU_SEARCH mit Entity-Tabu-Größe 5
 
 ## Lizenz
+*to do* Lizenz ergänzen.
 
-*TODO: Lizenz ergänzen*
 
 - SoftConstraints für überlappende Altersgruppen.
 - Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
 - Output als Excelfile oder ähnliches zur Darstellung
-- Ergänzung WM und EM als fixe Turniere. Dazu DM kurz vor WM zw em als Highlight der Saison.
 - U14 Turniere müssen eingepflegt werdn in die csv
 - Terminrestruktionen von Bewerben müssen in die CSV eingepfelgt werden.
