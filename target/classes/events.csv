@@ -36,3 +36,9 @@ EFC_Copenhagen,EFC,U17,2026-11-29,false
 EFC_Bratislava,EFC,U17,2027-01-10,true
 EFC_Belgrade,EFC,U17,2027-01-24,false
 EFC_Krakow,EFC,U17,2027-02-07,false
+EFC_EM_Senioren,EFC,SEN,2027-06-05,false
+EFC_EM_U20,EFC,U20,2027-06-12,false
+EFC_EM_U17,EFC,U17,2027-06-12,false
+FIE_WM_Senioren,FIE,SEN,2027-06-19,false
+FIE_WM_U20,FIE,U20,2027-06-26,false
+DM_Finals,DM,SEN,2027-06-22,false
