@@ -8,6 +8,11 @@ import java.util.Comparator;
 
 public class App {
 
+    /**
+     * The main method to run the fencing tournament planning application.
+     * It loads the schedule data, solves the planning problem, and exports the results.
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
 
         DataLoader loader = new DataLoader();

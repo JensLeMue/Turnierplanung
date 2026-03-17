@@ -13,6 +13,10 @@ public class DataLoader {
     private Map<String, Club> clubs = new HashMap<>();
 
 
+    /**
+     * Loads the complete schedule including clubs, weekends, and events.
+     * @return the loaded schedule
+     */
     public Schedule loadSchedule() {
 
         List<Club> clubList = loadClubs();
@@ -33,6 +37,10 @@ public class DataLoader {
     // CLUBS
     // ------------------------------------------------
 
+    /**
+     * Loads the list of clubs from the clubs.csv file.
+     * @return the list of clubs
+     */
     private List<Club> loadClubs() {
 
         List<Club> clubList = new ArrayList<>();
@@ -64,6 +72,10 @@ public class DataLoader {
     // WEEKENDS
     // ------------------------------------------------
 
+    /**
+     * Loads the list of weekends from the weekends.csv file.
+     * @return the list of weekends
+     */
     private List<Weekend> loadWeekends() {
 
         List<Weekend> weekends = new ArrayList<>();
@@ -98,6 +110,11 @@ public class DataLoader {
     // FIXED EVENTS (FIE / EFC)
     // ------------------------------------------------
 
+    /**
+     * Loads fixed events (FIE/EFC) from the events.csv file and assigns them to their fixed weekends.
+     * @param weekends the list of available weekends
+     * @return the list of fixed events
+     */
     private List<Event> loadFixedEvents(List<Weekend> weekends) {
 
         List<Event> events = new ArrayList<>();
@@ -147,6 +164,10 @@ public class DataLoader {
     // APPLICATION EVENTS
     // ------------------------------------------------
 
+    /**
+     * Loads application events from the applications.csv file.
+     * @return the list of application events
+     */
     private List<Event> loadApplications() {
 
         List<Event> events = new ArrayList<>();
@@ -195,6 +216,9 @@ public class DataLoader {
     // AGE CATEGORY CONFIGURATION
     // ------------------------------------------------
 
+    /**
+     * Loads the minimum weeks gap configuration for age categories from ageCategoryWeekGap.csv.
+     */
     private void loadAgeCategoryWeekGaps() {
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(

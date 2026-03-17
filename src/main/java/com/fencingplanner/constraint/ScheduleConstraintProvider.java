@@ -11,10 +11,18 @@ import java.util.List;
 
 public class ScheduleConstraintProvider implements ConstraintProvider {
 
-public ScheduleConstraintProvider() {}
+    /**
+     * Default constructor.
+     */
+    public ScheduleConstraintProvider() {}
 
-@Override
-public Constraint[] defineConstraints(ConstraintFactory factory){
+    /**
+     * Defines all constraints for the scheduling problem.
+     * @param factory the constraint factory
+     * @return an array of constraints
+     */
+    @Override
+    public Constraint[] defineConstraints(ConstraintFactory factory){
 
 return new Constraint[]{
 
@@ -34,7 +42,12 @@ evenMonthlyDistribution(factory)
 
 }
 
-private Constraint blockedWeekend(ConstraintFactory factory){
+    /**
+     * Constraint to penalize events scheduled on blocked weekends.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint blockedWeekend(ConstraintFactory factory){
 
 return factory.forEach(Event.class)
 
@@ -44,7 +57,12 @@ return factory.forEach(Event.class)
 
 }
 
-private Constraint fixedFIE(ConstraintFactory factory){
+    /**
+     * Constraint to ensure FIE events are scheduled on their fixed weekends.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint fixedFIE(ConstraintFactory factory){
 
 return factory.forEach(Event.class)
 
@@ -60,7 +78,12 @@ return factory.forEach(Event.class)
 
 }
 
-private Constraint fixedEFC(ConstraintFactory factory){
+    /**
+     * Constraint to ensure EFC events are scheduled on their fixed weekends.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint fixedEFC(ConstraintFactory factory){
 
 return factory.forEach(Event.class)
 
@@ -74,7 +97,12 @@ return factory.forEach(Event.class)
 
 }
 
-private Constraint fixedDM(ConstraintFactory factory){
+    /**
+     * Constraint to ensure DM events are scheduled on their fixed weekends.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint fixedDM(ConstraintFactory factory){
 
 return factory.forEach(Event.class)
 
@@ -88,7 +116,12 @@ return factory.forEach(Event.class)
 
 }
 
-private Constraint qbEquivalentOverlap(ConstraintFactory factory){
+    /**
+     * Constraint to prevent overlap of events that count as national qualification for the same age categories.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint qbEquivalentOverlap(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class,
 Joiners.equal(Event::getWeekend))
@@ -106,7 +139,12 @@ b.getAgeCategory().canStartIn(a.getAgeCategory()))
 
 }
 
-private Constraint venueAvailability(ConstraintFactory factory){
+    /**
+     * Constraint to ensure events are scheduled only on available weekends based on venue availability.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint venueAvailability(ConstraintFactory factory){
 
 return factory.forEach(Event.class)
 
@@ -121,7 +159,12 @@ e.getWeekend() != null
 
 }
 
-private boolean isWeekendAvailable(Event event){
+    /**
+     * Checks if the weekend is available for the event based on venue availability.
+     * @param event the event to check
+     * @return true if the weekend is available, false otherwise
+     */
+    private boolean isWeekendAvailable(Event event){
 
 String availability = event.getVenueAvailability();
 String weekendDate = event.getWeekend().getDate().toString();
@@ -138,7 +181,12 @@ return false;
 
 }
 
-private Constraint athleteOverlap(ConstraintFactory factory){
+    /**
+     * Constraint to prevent athlete overlap for events with overlapping age categories on the same weekend.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint athleteOverlap(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class,
 Joiners.equal(Event::getWeekend))
@@ -155,7 +203,12 @@ b.getAgeCategory().canStartIn(a.getAgeCategory())
 
 }
 
-private Constraint minWeeksBetweenTournaments(ConstraintFactory factory) {
+    /**
+     * Constraint to ensure minimum weeks between tournaments of the same age category.
+     * @param factory the constraint factory
+     * @return the constraint
+     */
+    private Constraint minWeeksBetweenTournaments(ConstraintFactory factory) {
 
     return factory.forEachUniquePair(Event.class,
             Joiners.equal(Event::getAgeCategory))
