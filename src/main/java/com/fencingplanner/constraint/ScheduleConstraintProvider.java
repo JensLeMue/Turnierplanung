@@ -6,8 +6,12 @@ import ai.timefold.solver.core.api.score.stream.*;
 import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 
 import java.time.temporal.ChronoUnit;
+import java.time.Month;
+import java.util.List;
 
 public class ScheduleConstraintProvider implements ConstraintProvider {
+
+public ScheduleConstraintProvider() {}
 
 @Override
 public Constraint[] defineConstraints(ConstraintFactory factory){
@@ -23,7 +27,8 @@ venueAvailability(factory),
 athleteOverlap(factory),
             minWeeksBetweenTournaments(factory),
 dmBeforeEmWm(factory),
-dmAfterQ(factory)
+dmAfterQ(factory),
+evenMonthlyDistribution(factory)
 
 };
 
@@ -223,18 +228,35 @@ private Constraint dmAfterQ(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class)
 
-.filter((dm, q) -> 
-    dm.getType().equals("DM") && q.getType().equals("Q") &&
-    dm.getAgeCategory() == q.getAgeCategory() &&
-    (dm.getAgeCategory() == AgeCategory.SEN || dm.getAgeCategory() == AgeCategory.U23 || 
-     dm.getAgeCategory() == AgeCategory.U17 || dm.getAgeCategory() == AgeCategory.U15 ||
-     dm.getAgeCategory() == AgeCategory.U13 || dm.getAgeCategory() == AgeCategory.U20) &&
-    dm.getWeekend() != null && q.getWeekend() != null &&
-    dm.getWeekend().getDate().isBefore(q.getWeekend().getDate())
+.filter((a, b) -> 
+    ((a.getType().equals("DM") && b.getType().equals("QB")) ||
+     (a.getType().equals("QB") && b.getType().equals("DM"))) &&
+    a.getAgeCategory() == b.getAgeCategory() &&
+    (a.getAgeCategory() == AgeCategory.SEN || a.getAgeCategory() == AgeCategory.U23 || 
+     a.getAgeCategory() == AgeCategory.U17 || a.getAgeCategory() == AgeCategory.U15 ||
+     a.getAgeCategory() == AgeCategory.U13 || a.getAgeCategory() == AgeCategory.U20) &&
+    a.getWeekend() != null && b.getWeekend() != null
 )
+
+.filter((a, b) -> {
+    Event dm = a.getType().equals("DM") ? a : b;
+    Event q = a.getType().equals("QB") ? a : b;
+    return dm.getWeekend().getDate().isBefore(q.getWeekend().getDate());
+})
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("DM after Q");
 
+}
+
+private Constraint evenMonthlyDistribution(ConstraintFactory factory) {
+    return factory.forEachUniquePair(Event.class, Joiners.equal(Event::getAgeCategory))
+        .filter((a, b) -> a.getWeekend() != null && b.getWeekend() != null)
+        .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+            long daysBetween = ChronoUnit.DAYS.between(a.getWeekend().getDate(), b.getWeekend().getDate());
+            // Bestrafe große Abstände (> 4 Wochen), um Häufungen zu vermeiden und gleichmäßige Verteilung zu fördern
+            return daysBetween > 28 ? (int) (daysBetween - 28) : 0;
+        })
+        .asConstraint("even monthly distribution");
 }
 
 }

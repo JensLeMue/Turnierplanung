@@ -178,6 +178,7 @@ public class DataLoader {
                         club,
                         type
                 );
+                e.setCountsAsNationalQ(type.equals("QB"));
                 e.setVenueAvailability(venueAvailability);
 
                 events.add(e);

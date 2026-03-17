@@ -21,6 +21,24 @@ public class App {
 
         Schedule solution = solver.solve(problem);
 
+        // Score-Erklärung in Datei schreiben
+        try (java.io.PrintWriter writer = new java.io.PrintWriter("score_explanation.txt")) {
+            writer.println("===== SCORE EXPLANATION =====\n");
+            writer.println("Overall Score: " + solution.getScore());
+            writer.println("\nDieser Score setzt sich aus Hard- und Soft-Constraints zusammen:");
+            writer.println("- Hard-Constraints (müssen erfüllt sein, z.B. feste Termine, keine Überlappungen): " + solution.getScore().hardScore());
+            writer.println("- Soft-Constraints (optimierbar, z.B. Mindestabstände, gleichmäßige Verteilung): " + solution.getScore().softScore());
+            writer.println("\nDie einzelnen Constraint-Verletzungen können in der Konsole oder durch Debugging analysiert werden.");
+            writer.println("Beispiele für Constraints:");
+            writer.println("- blocked weekend: Events nicht auf blockierten Wochenenden");
+            writer.println("- FIE fixed: FIE-Events auf festen Terminen");
+            writer.println("- qb equivalent overlap: Keine Überlappungen bei Qualifikationsturnieren");
+            writer.println("- min weeks between tournaments: Mindestabstand zwischen Turnieren derselben Kategorie");
+            writer.println("- even monthly distribution: Gleichmäßige Verteilung (neu hinzugefügt)");
+        } catch (java.io.FileNotFoundException e) {
+            System.err.println("Fehler beim Schreiben der Score-Erklärung: " + e.getMessage());
+        }
+
         // Debug: print any hard-constraint violations for fixed events
         solution.getEvents().stream()
                 .filter(e -> e.getFixedWeekend() != null &&
