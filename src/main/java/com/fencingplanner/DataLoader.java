@@ -17,6 +17,10 @@ public class DataLoader {
 
         List<Club> clubList = loadClubs();
         List<Weekend> weekends = loadWeekends();
+
+        // Konfigurierbarer Mindestabstand zwischen Turnieren pro Altersklasse
+        loadAgeCategoryWeekGaps();
+
         List<Event> events = new ArrayList<>();
 
         events.addAll(loadFixedEvents(weekends));
@@ -184,6 +188,37 @@ public class DataLoader {
         }
 
         return events;
+    }
+
+    // ------------------------------------------------
+    // AGE CATEGORY CONFIGURATION
+    // ------------------------------------------------
+
+    private void loadAgeCategoryWeekGaps() {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(
+                        getClass().getResourceAsStream("/ageCategoryWeekGap.csv")))) {
+
+            String line = br.readLine(); // header
+
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length < 2) {
+                    continue;
+                }
+
+                try {
+                    AgeCategory ageCategory = AgeCategory.valueOf(parts[0].trim());
+                    int minWeeks = Integer.parseInt(parts[1].trim());
+                    ageCategory.setMinWeeksBetweenTournaments(minWeeks);
+                } catch (IllegalArgumentException e) {
+                    // ignore invalid lines
+                }
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

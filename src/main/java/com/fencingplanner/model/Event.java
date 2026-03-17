@@ -4,7 +4,13 @@ import ai.timefold.solver.core.api.domain.entity.PlanningEntity;
 import ai.timefold.solver.core.api.domain.lookup.PlanningId;
 import ai.timefold.solver.core.api.domain.variable.PlanningVariable;
 
-@PlanningEntity
+@PlanningEntity(
+    // PinningFilter: Events mit fixedWeekend != null werden vom Solver nicht verschoben.
+    // Dies ist notwendig, da Hard-Constraints allein nicht zuverlässig genug sind,
+    // um externe/feste Termine (FIE, EFC) zu bewahren, wenn andere Constraints Druck ausüben.
+    // Pinning ist stärker: gepinnte Entities werden von der Optimierung völlig ausgeschlossen.
+    pinningFilter = FixedEventPinningFilter.class
+)
 public class Event {
 
 @PlanningId

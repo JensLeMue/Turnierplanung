@@ -5,6 +5,8 @@ import com.fencingplanner.model.*;
 import ai.timefold.solver.core.api.score.stream.*;
 import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 
+import java.time.temporal.ChronoUnit;
+
 public class ScheduleConstraintProvider implements ConstraintProvider {
 
 @Override
@@ -19,7 +21,7 @@ fixedDM(factory),
 qbEquivalentOverlap(factory),
 venueAvailability(factory),
 athleteOverlap(factory),
-dmWeekendConstraints(factory),
+            minWeeksBetweenTournaments(factory),
 dmBeforeEmWm(factory),
 dmAfterQ(factory)
 
@@ -42,9 +44,12 @@ private Constraint fixedFIE(ConstraintFactory factory){
 return factory.forEach(Event.class)
 
 .filter(e ->
-e.getClub().getName().equals("FIE")
-&& e.getFixedWeekend()!=null
-&& e.getWeekend()!=e.getFixedWeekend())
+    e.getClub().getName().equals("FIE")
+    && e.getFixedWeekend()!=null
+    // Nutze .equals() statt !=, da Timefold/OptaPlanner Objekte klont.
+    // Dadurch entstehen mehrere Weekend-Instanzen für dasselbe Datum.
+    // Mit Referenz-Vergleich (!=) würde das nicht funktionieren.
+    && !e.getWeekend().equals(e.getFixedWeekend()))
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("FIE fixed");
 
@@ -55,9 +60,10 @@ private Constraint fixedEFC(ConstraintFactory factory){
 return factory.forEach(Event.class)
 
 .filter(e ->
-e.getClub().getName().equals("EFC")
-&& e.getFixedWeekend()!=null
-&& e.getWeekend()!=e.getFixedWeekend())
+    e.getClub().getName().equals("EFC")
+    && e.getFixedWeekend()!=null
+    // Nutze .equals() statt !=, da Timefold/OptaPlanner Objekte klont.
+    && !e.getWeekend().equals(e.getFixedWeekend()))
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("EFC fixed");
 
@@ -68,9 +74,10 @@ private Constraint fixedDM(ConstraintFactory factory){
 return factory.forEach(Event.class)
 
 .filter(e ->
-e.getType().equals("DM")
-&& e.getFixedWeekend()!=null
-&& e.getWeekend()!=e.getFixedWeekend())
+    e.getType().equals("DM")
+    && e.getFixedWeekend()!=null
+    // Nutze .equals() statt !=, da Timefold/OptaPlanner Objekte klont.
+    && !e.getWeekend().equals(e.getFixedWeekend()))
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("DM fixed");
 
@@ -140,6 +147,30 @@ b.getAgeCategory().canStartIn(a.getAgeCategory())
 )
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("athlete overlap");
+
+}
+
+private Constraint minWeeksBetweenTournaments(ConstraintFactory factory) {
+
+    return factory.forEachUniquePair(Event.class,
+            Joiners.equal(Event::getAgeCategory))
+
+            .filter((a, b) ->
+                    a.getWeekend() != null && b.getWeekend() != null
+            )
+
+            .filter((a, b) -> {
+                int minWeeks = a.getAgeCategory().getMinWeeksBetweenTournaments();
+                long weeks = Math.abs(ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate()));
+                return weeks < minWeeks;
+            })
+
+            .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+                int minWeeks = a.getAgeCategory().getMinWeeksBetweenTournaments();
+                long weeks = Math.abs(ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate()));
+                return (int) (minWeeks - weeks);
+            })
+            .asConstraint("min weeks between tournaments");
 
 }
 

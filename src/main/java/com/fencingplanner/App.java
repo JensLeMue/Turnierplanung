@@ -21,7 +21,16 @@ public class App {
 
         Schedule solution = solver.solve(problem);
 
+        // Debug: print any hard-constraint violations for fixed events
+        solution.getEvents().stream()
+                .filter(e -> e.getFixedWeekend() != null &&
+                        (e.getWeekend() == null || !e.getWeekend().equals(e.getFixedWeekend())))
+                .forEach(e -> System.out.println("[FIXED VIOLATION] " + e.getName() + " fixed " +
+                        e.getFixedWeekend().getDate() + " but assigned " +
+                        (e.getWeekend() == null ? "UNASSIGNED" : e.getWeekend().getDate())));
+
         System.out.println("\n===== RESULT =====\n");
+        System.out.println("Score: " + solution.getScore());
         System.out.println(String.format("%-20s %-25s %-6s %-4s -> %s", "Club", "Event", "Type", "Age", "Date"));
         System.out.println("--------------------------------------------------------------------");
 

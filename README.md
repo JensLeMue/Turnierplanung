@@ -57,6 +57,7 @@ Die Eingabedaten liegen unter `src/main/resources/`:
 | `events.csv` | Fixe internationale Turniere (FIE/EFC) | `name, type, ageCategory, fixedDate, qbEquivalent` |
 | `applications.csv` | Bewerbungen nationaler Ausrichter | `club, type, ageCategory` |
 | `clubs.csv` | Alle beteiligten Vereine/Organisationen | `name` |
+| `ageCategoryWeekGap.csv` | Mindestabstand in Wochen zwischen Turnieren pro Altersklasse | `ageCategory`, `minWeeksBetweenTournaments` |
 
 ### Beispiel `events.csv`
 
