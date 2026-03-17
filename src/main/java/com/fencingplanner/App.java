@@ -5,8 +5,24 @@ import com.fencingplanner.model.*;
 import ai.timefold.solver.core.api.solver.*;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
+
+    private static final Map<java.time.LocalDate, String> HOLIDAYS = new HashMap<>();
+
+    static {
+        HOLIDAYS.put(java.time.LocalDate.of(2026, 11, 21), "Totensonntag");
+        HOLIDAYS.put(java.time.LocalDate.of(2026, 12, 26), "2. Weihnachtsfeiertag");
+        HOLIDAYS.put(java.time.LocalDate.of(2027, 1, 2), "Neujahr");
+        HOLIDAYS.put(java.time.LocalDate.of(2027, 4, 17), "Karfreitag");
+        HOLIDAYS.put(java.time.LocalDate.of(2027, 5, 29), "Pfingstmontag");
+    }
+
+    private static String getHolidayName(java.time.LocalDate date) {
+        return HOLIDAYS.getOrDefault(date, "");
+    }
 
     /**
      * The main method to run the fencing tournament planning application.
@@ -54,6 +70,27 @@ public class App {
 
         System.out.println("\n===== RESULT =====\n");
         System.out.println("Score: " + solution.getScore());
+
+        // Liste aller Wochenenden
+        System.out.println("\n===== ALL WEEKENDS =====\n");
+        System.out.println(String.format("%-12s %-8s %-20s %s", "Date", "Blocked", "Holiday", "Events"));
+        System.out.println("-----------------------------------------------------------------");
+
+        solution.getWeekends().stream()
+                .sorted(Comparator.comparing(Weekend::getDate))
+                .forEach(w -> {
+                    String blockedStr = w.isBlocked() ? "YES" : "NO";
+                    String holidayStr = getHolidayName(w.getDate());
+                    String eventsStr = solution.getEvents().stream()
+                            .filter(e -> e.getWeekend() != null && e.getWeekend().equals(w))
+                            .map(e -> e.getName() + " (" + e.getClub().getName() + ")")
+                            .reduce((a, b) -> a + ", " + b)
+                            .orElse("None");
+                    System.out.println(String.format("%-12s %-8s %-20s %s",
+                            w.getDate().toString(), blockedStr, holidayStr, eventsStr));
+                });
+
+        System.out.println("\n===== EVENTS =====\n");
         System.out.println(String.format("%-20s %-25s %-6s %-4s -> %s", "Club", "Event", "Type", "Age", "Date"));
         System.out.println("--------------------------------------------------------------------");
 

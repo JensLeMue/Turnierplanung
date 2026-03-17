@@ -1,9 +1,9 @@
 ===== SCORE EXPLANATION =====
 
-Overall Score: -29hard/-13324soft
+Overall Score: -23hard/-13324soft
 
 Dieser Score setzt sich aus Hard- und Soft-Constraints zusammen:
-- Hard-Constraints (müssen erfüllt sein, z.B. feste Termine, keine Überlappungen): -29
+- Hard-Constraints (müssen erfüllt sein, z.B. feste Termine, keine Überlappungen): -23
 - Soft-Constraints (optimierbar, z.B. Mindestabstände, gleichmäßige Verteilung): -13324
 
 Die einzelnen Constraint-Verletzungen können in der Konsole oder durch Debugging analysiert werden.

@@ -129,6 +129,8 @@ Joiners.equal(Event::getWeekend))
 .filter((a,b)->
 (a.isCountsAsNationalQ() || b.isCountsAsNationalQ())
 &&
+!( (a.getClub().getName().equals("FIE") && !a.isCountsAsNationalQ()) || (b.getClub().getName().equals("FIE") && !b.isCountsAsNationalQ()) )
+&&
 (a.getAgeCategory().canStartIn(b.getAgeCategory())
 ||
 b.getAgeCategory().canStartIn(a.getAgeCategory()))
