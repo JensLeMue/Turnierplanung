@@ -29,6 +29,8 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 - DM am Saisonende mit kombinierten Altersklassen (U20+U15 etc.)
 - Damen- und Herrenwettbewerbe am selben Wochenende
 - Streckenoptimierung für gleichmäßige geografische Verteilung
+- SoftConstraints für überlappende Altersgruppen.
+- Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
 
 ## Voraussetzungen
 
@@ -110,8 +112,4 @@ Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierba
 *to do* Lizenz ergänzen.
 
 
-- SoftConstraints für überlappende Altersgruppen.
-- Soft Constraints für bestimmte Feiertage (Totensonntag wenn es nicht anders geht)
-- Output als Excelfile oder ähnliches zur Darstellung
 - U14 Turniere müssen eingepflegt werdn in die csv
-- Terminrestruktionen von Bewerben müssen in die CSV eingepfelgt werden.
