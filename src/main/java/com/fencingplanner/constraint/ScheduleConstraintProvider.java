@@ -11,18 +11,34 @@ import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
 import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
 import ai.timefold.solver.core.api.score.stream.Joiners;
 
+/**
+ * Definiert alle Hard- und Soft-Constraints für die Turnierplanung.
+ *
+ * <h3>Hard-Constraints (müssen erfüllt sein):</h3>
+ * <ul>
+ *   <li>{@code blockedWeekend} – Keine Events auf gesperrten Wochenenden</li>
+ *   <li>{@code fixedFIE} – FIE-Events auf ihren festen Terminen</li>
+ *   <li>{@code fixedEFC} – EFC-Events auf ihren festen Terminen</li>
+ *   <li>{@code fixedDM} – DM-Events auf ihren festen Terminen</li>
+ *   <li>{@code qbEquivalentOverlap} – Keine Überlappung von Qualifikationsturnieren gleicher Startberechtigung</li>
+ *   <li>{@code venueAvailability} – Events nur an verfügbaren Hallenterminen</li>
+ *   <li>{@code athleteOverlap} – Keine zwei Events mit überlappenden Altersklassen am selben Wochenende</li>
+ *   <li>{@code dmWeekendConstraints} – DM-Paarungen (U15+U20, U13+U17) am selben Wochenende</li>
+ *   <li>{@code dmBeforeEmWm} – DMs vor den zugehörigen EM/WM-Terminen</li>
+ *   <li>{@code dmAfterQ} – DMs nach den Qualifikationsturnieren</li>
+ * </ul>
+ *
+ * <h3>Soft-Constraints (Optimierungsziele, gewichtet):</h3>
+ * <ul>
+ *   <li>{@code minWeeksBetweenTournaments} – Mindestabstand zwischen Turnieren pro Altersklasse (Gewicht: ×15)</li>
+ *   <li>{@code evenMonthlyDistribution} – Gleichmäßige Verteilung über die Saison (Gewicht: ×1)</li>
+ *   <li>{@code eventsBeforeDm} – Nationale/Regionale Turniere sollen vor der DM liegen (Gewicht: ×10)</li>
+ * </ul>
+ */
 public class ScheduleConstraintProvider implements ConstraintProvider {
 
-    /**
-     * Default constructor.
-     */
     public ScheduleConstraintProvider() {}
 
-    /**
-     * Defines all constraints for the scheduling problem.
-     * @param factory the constraint factory
-     * @return an array of constraints
-     */
     @Override
     public Constraint[] defineConstraints(ConstraintFactory factory){
 
@@ -39,16 +55,17 @@ athleteOverlap(factory),
 dmWeekendConstraints(factory),
 dmBeforeEmWm(factory),
 dmAfterQ(factory),
-evenMonthlyDistribution(factory)
+evenMonthlyDistribution(factory),
+eventsBeforeDm(factory)
 
 };
 
 }
 
     /**
-     * Constraint to penalize events scheduled on blocked weekends.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: Keine Events auf gesperrten Wochenenden.
+     * Gesperrte Wochenenden sind in weekends.csv mit blocked=true markiert.
+     * FIE- und EFC-Events sind ausgenommen, da deren Termine extern vorgegeben sind.
      */
     private Constraint blockedWeekend(ConstraintFactory factory){
 
@@ -62,9 +79,8 @@ return factory.forEach(Event.class)
 }
 
     /**
-     * Constraint to ensure FIE events are scheduled on their fixed weekends.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: FIE-Events (Weltverband) müssen auf ihrem festen Termin bleiben.
+     * Nutzt .equals() statt Referenzvergleich, da Timefold Objekte klont.
      */
     private Constraint fixedFIE(ConstraintFactory factory){
 
@@ -83,9 +99,7 @@ return factory.forEach(Event.class)
 }
 
     /**
-     * Constraint to ensure EFC events are scheduled on their fixed weekends.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: EFC-Events (Europäischer Verband) müssen auf ihrem festen Termin bleiben.
      */
     private Constraint fixedEFC(ConstraintFactory factory){
 
@@ -102,9 +116,8 @@ return factory.forEach(Event.class)
 }
 
     /**
-     * Constraint to ensure DM events are scheduled on their fixed weekends.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: DM-Events (Deutsche Meisterschaften) müssen auf ihrem festen Termin bleiben,
+     * sofern ein fester Termin vorgegeben ist.
      */
     private Constraint fixedDM(ConstraintFactory factory){
 
@@ -121,9 +134,9 @@ return factory.forEach(Event.class)
 }
 
     /**
-     * Constraint to prevent overlap of events that count as national qualification for the same age categories.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: Qualifikationsturniere (QB) dürfen nicht am selben Wochenende stattfinden,
+     * wenn Athleten aufgrund überlappender Altersklassen an beiden teilnehmen könnten.
+     * FIE-Events ohne QB-Wertung sind ausgenommen.
      */
     private Constraint qbEquivalentOverlap(ConstraintFactory factory){
 
@@ -146,9 +159,9 @@ b.getAgeCategory().canStartIn(a.getAgeCategory()))
 }
 
     /**
-     * Constraint to ensure events are scheduled only on available weekends based on venue availability.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: Events dürfen nur an Wochenenden stattfinden, an denen die Halle verfügbar ist.
+     * Die Verfügbarkeit wird pro Event in applications.csv als Semikolon-getrennte Datumsliste
+     * oder "all" (immer verfügbar) angegeben.
      */
     private Constraint venueAvailability(ConstraintFactory factory){
 
@@ -165,11 +178,7 @@ e.getWeekend() != null
 
 }
 
-    /**
-     * Checks if the weekend is available for the event based on venue availability.
-     * @param event the event to check
-     * @return true if the weekend is available, false otherwise
-     */
+    /** Prüft ob das zugewiesene Wochenende in der Verfügbarkeitsliste des Events enthalten ist. */
     private boolean isWeekendAvailable(Event event){
 
 String availability = event.getVenueAvailability();
@@ -188,9 +197,9 @@ return false;
 }
 
     /**
-     * Constraint to prevent athlete overlap for events with overlapping age categories on the same weekend.
-     * @param factory the constraint factory
-     * @return the constraint
+     * HARD: Keine zwei Events mit überlappenden Altersklassen am selben Wochenende.
+     * Überlappung wird über AgeCategory.canStartIn() bestimmt (z.B. U17-Athleten
+     * dürfen auch bei U20/U23/SEN starten → diese Events dürfen nicht kollidieren).
      */
     private Constraint athleteOverlap(ConstraintFactory factory){
 
@@ -210,9 +219,10 @@ b.getAgeCategory().canStartIn(a.getAgeCategory())
 }
 
     /**
-     * Constraint to ensure minimum weeks between tournaments of the same age category.
-     * @param factory the constraint factory
-     * @return the constraint
+     * SOFT (Gewicht ×15): Mindestabstand in Wochen zwischen Turnieren derselben Altersklasse.
+     * Werte aus ageCategoryWeekGap.csv (z.B. U17=2, U15=3, U13=4 Wochen).
+     * Strafe = (minWeeks - tatsächlicherAbstand) × 15.
+     * Gewicht 15 stellt sicher, dass dieser Constraint wichtiger ist als die Monatsverteilung.
      */
     private Constraint minWeeksBetweenTournaments(ConstraintFactory factory) {
 
@@ -232,12 +242,18 @@ b.getAgeCategory().canStartIn(a.getAgeCategory())
             .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
                 int minWeeks = a.getAgeCategory().getMinWeeksBetweenTournaments();
                 long weeks = Math.abs(ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate()));
-                return (int) (minWeeks - weeks);
+                // Faktor 15: Gleicht die Monatsverteilung aus, Mindestabstand ist etwas wichtiger
+                return (int) (minWeeks - weeks) * 15;
             })
             .asConstraint("min weeks between tournaments");
 
 }
 
+/**
+ * HARD: Bestimmte DM-Paarungen müssen am selben Wochenende stattfinden:
+ * - U15 + U20 gemeinsam
+ * - U13 + U17 gemeinsam
+ */
 private Constraint dmWeekendConstraints(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class,
@@ -261,6 +277,11 @@ Joiners.filtering((a, b) -> a.getType().equals("DM") && b.getType().equals("DM")
 
 }
 
+/**
+ * HARD: Deutsche Meisterschaften müssen zeitlich vor den zugehörigen EM/WM-Terminen liegen.
+ * Zuordnung: DM SEN→EM/WM SEN, DM U23→EM/WM U23, DM U17→EM/WM U17,
+ * DM U15→EM/WM U15, DM U13→EM/WM U17, DM U20→EM/WM U15.
+ */
 private Constraint dmBeforeEmWm(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class)
@@ -283,6 +304,10 @@ return factory.forEachUniquePair(Event.class)
 
 }
 
+/**
+ * HARD: Deutsche Meisterschaften müssen zeitlich nach den Qualifikationsturnieren (QB)
+ * derselben Altersklasse liegen. Reihenfolge: QB → DM → EM/WM.
+ */
 private Constraint dmAfterQ(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class)
@@ -307,15 +332,53 @@ return factory.forEachUniquePair(Event.class)
 
 }
 
+/**
+ * SOFT (Gewicht ×1): Gleichmäßige Verteilung der Turniere über die Saison.
+ * Bestraft Eventpaare derselben Altersklasse, die mehr als 4 Wochen (28 Tage) auseinander liegen.
+ * Strafe = Tage über 28 hinaus. Verhindert große Lücken im Turnierkalender.
+ */
 private Constraint evenMonthlyDistribution(ConstraintFactory factory) {
     return factory.forEachUniquePair(Event.class, Joiners.equal(Event::getAgeCategory))
         .filter((a, b) -> a.getWeekend() != null && b.getWeekend() != null)
         .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
             long daysBetween = ChronoUnit.DAYS.between(a.getWeekend().getDate(), b.getWeekend().getDate());
-            // Bestrafe große Abstände (> 4 Wochen), um Häufungen zu vermeiden und gleichmäßige Verteilung zu fördern
             return daysBetween > 28 ? (int) (daysBetween - 28) : 0;
         })
         .asConstraint("even monthly distribution");
+}
+
+/**
+ * SOFT (Gewicht ×10): Nationale und regionale Turniere sollen vor der DM
+ * derselben Altersklasse stattfinden.
+ * Feste internationale Events (FIE, EFC, EM, WM) sind ausgenommen.
+ * Strafe = Anzahl Wochen nach der DM × 10.
+ */
+private Constraint eventsBeforeDm(ConstraintFactory factory) {
+    return factory.forEachUniquePair(Event.class,
+            Joiners.equal(Event::getAgeCategory))
+        .filter((a, b) -> a.getWeekend() != null && b.getWeekend() != null)
+        .filter((a, b) -> {
+            Event dm = null, other = null;
+            if (a.getType().equals("DM") && !b.getType().equals("DM")) {
+                dm = a; other = b;
+            } else if (b.getType().equals("DM") && !a.getType().equals("DM")) {
+                dm = b; other = a;
+            } else {
+                return false;
+            }
+            // Feste internationale Events (FIE, EFC, EM, WM) überspringen
+            String type = other.getType();
+            if (type.equals("FIE") || type.equals("EFC") || type.equals("EM") || type.equals("WM")) {
+                return false;
+            }
+            return other.getWeekend().getDate().isAfter(dm.getWeekend().getDate());
+        })
+        .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+            Event dm = a.getType().equals("DM") ? a : b;
+            Event other = a.getType().equals("DM") ? b : a;
+            return (int) ChronoUnit.WEEKS.between(dm.getWeekend().getDate(), other.getWeekend().getDate()) * 10;
+        })
+        .asConstraint("events before DM");
 }
 
 }
