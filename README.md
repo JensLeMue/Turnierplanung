@@ -21,14 +21,22 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 | Blocked Weekend | Kein Turnier auf gesperrten Wochenenden |
 | FIE Fixed | FIE-Turniere bleiben auf ihrem fixen Datum |
 | EFC Fixed | EFC-Turniere bleiben auf ihrem fixen Datum |
+| DM Fixed | DM-Turniere bleiben auf ihrem fixen Datum |
+| QB Equivalent Overlap | Keine Überlappung von Qualifikationsturnieren bei startberechtigten Altersklassen |
+| Venue Availability | Events nur auf verfügbaren Wochenenden des Ausrichters |
 | Athlete Overlap | Keine zwei Turniere am selben Wochenende, wenn Athleten in beiden Altersklassen startberechtigt wären |
+| DM Weekend Constraints | U15+U20 DMs und U13+U17 DMs am gleichen Wochenende |
+| DM Before EM/WM | Deutsche Meisterschaften vor der EM/WM derselben Altersklasse |
+| DM After Q | Deutsche Meisterschaften nach den Qualifikationsturnieren |
 
-### Geplante Erweiterungen
+### Implementierte Constraints (Soft)
 
-- Mindestabstand zwischen Turnieren derselben Altersklasse
-- DM am Saisonende mit kombinierten Altersklassen (U20+U15 etc.)
-- Damen- und Herrenwettbewerbe am selben Wochenende
-- Streckenoptimierung für gleichmäßige geografische Verteilung
+| Constraint | Gewicht | Beschreibung |
+|---|---|---|
+| Min Weeks Between Tournaments | ×15 | Mindestabstand zwischen Turnieren derselben Altersklasse (konfigurierbar über `ageCategoryWeekGap.csv`) |
+| Even Monthly Distribution | ×1 | Gleichmäßige Verteilung der Turniere über die Saison |
+| Events Before DM | ×10 | Nationale/Regionale Turniere sollen vor der DM stattfinden |
+| Preferred Date Reward | +20 | Belohnung für Zuweisung auf Wunschtermine des Veranstalters |
 
 ## Voraussetzungen
 
@@ -55,7 +63,7 @@ Die Eingabedaten liegen unter `src/main/resources/`:
 |---|---|---|
 | `weekends.csv` | Verfügbare Wochenenden der Saison | `date, blocked` |
 | `events.csv` | Fixe internationale Turniere (FIE/EFC) | `name, type, ageCategory, fixedDate, qbEquivalent` |
-| `applications.csv` | Bewerbungen nationaler Ausrichter | `club, type, ageCategory` |
+| `applications.csv` | Bewerbungen nationaler Ausrichter | `club, type, ageCategory[, venueAvailability]` |
 | `clubs.csv` | Alle beteiligten Vereine/Organisationen | `name` |
 | `ageCategoryWeekGap.csv` | Mindestabstand in Wochen zwischen Turnieren pro Altersklasse | `ageCategory`, `minWeeksBetweenTournaments` |
 
@@ -72,8 +80,12 @@ EFC_Dublin,EFC,SEN,2026-10-18,false
 ```csv
 club,type,ageCategory,venueAvailability
 Leverkusen,QB,SEN,all
-Reutlingen,QB,SEN,2026-10-18;2026-11-15;2027-02-20
+Reutlingen,QB,SEN,2026-10-03*;2026-10-10*;2026-10-17;2026-10-24;2026-10-31
+Heidenheim,QB,U17,all
 ```
+
+- **`venueAvailability`**: Verfügbare Termine des Ausrichters, mit `;` getrennt. `all` = an allen Wochenenden verfügbar.
+- **Wunschtermine**: Termine mit `*` markieren (z.B. `2026-10-03*`). Der Solver bevorzugt diese Termine (Soft-Constraint, +20 Reward), weicht aber bei Konflikten auf andere verfügbare Termine aus.
 
 ## Projektstruktur
 

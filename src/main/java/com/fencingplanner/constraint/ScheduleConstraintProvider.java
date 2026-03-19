@@ -33,6 +33,7 @@ import ai.timefold.solver.core.api.score.stream.Joiners;
  *   <li>{@code minWeeksBetweenTournaments} – Mindestabstand zwischen Turnieren pro Altersklasse (Gewicht: ×15)</li>
  *   <li>{@code evenMonthlyDistribution} – Gleichmäßige Verteilung über die Saison (Gewicht: ×1)</li>
  *   <li>{@code eventsBeforeDm} – Nationale/Regionale Turniere sollen vor der DM liegen (Gewicht: ×10)</li>
+ *   <li>{@code preferredDateReward} – Belohnung für Zuweisung auf Wunschtermine des Veranstalters (Gewicht: ×20)</li>
  * </ul>
  */
 public class ScheduleConstraintProvider implements ConstraintProvider {
@@ -56,7 +57,8 @@ dmWeekendConstraints(factory),
 dmBeforeEmWm(factory),
 dmAfterQ(factory),
 evenMonthlyDistribution(factory),
-eventsBeforeDm(factory)
+eventsBeforeDm(factory),
+preferredDateReward(factory)
 
 };
 
@@ -379,6 +381,28 @@ private Constraint eventsBeforeDm(ConstraintFactory factory) {
             return (int) ChronoUnit.WEEKS.between(dm.getWeekend().getDate(), other.getWeekend().getDate()) * 10;
         })
         .asConstraint("events before DM");
+}
+
+/**
+ * Soft-Constraint: Belohnt die Zuweisung eines Events auf einen Wunschtermin des Veranstalters.
+ * Wunschtermine werden in applications.csv mit * markiert (z.B. 2026-09-05*).
+ * Belohnung = 20 pro Event auf Wunschtermin.
+ */
+private Constraint preferredDateReward(ConstraintFactory factory) {
+    return factory.forEach(Event.class)
+        .filter(e -> e.getWeekend() != null
+                && e.getPreferredDates() != null)
+        .filter(e -> {
+            String weekendDate = e.getWeekend().getDate().toString();
+            for (String preferred : e.getPreferredDates().split(";")) {
+                if (preferred.trim().equals(weekendDate)) {
+                    return true;
+                }
+            }
+            return false;
+        })
+        .reward(HardSoftScore.ONE_SOFT, e -> 20)
+        .asConstraint("preferred date reward");
 }
 
 }

@@ -1,12 +1,19 @@
 package com.fencingplanner;
 
-import com.fencingplanner.model.*;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import com.fencingplanner.model.AgeCategory;
+import com.fencingplanner.model.Club;
+import com.fencingplanner.model.Event;
+import com.fencingplanner.model.Schedule;
+import com.fencingplanner.model.Weekend;
 
 public class DataLoader {
 
@@ -174,7 +181,8 @@ public class DataLoader {
      * Loads application events from the applications.csv file.
      * Anpassbar in: src/main/resources/applications.csv
      * Format: club,type,ageCategory[,venueAvailability] (z.B. Heidenheim,QB,U17,all)
-     * venueAvailability ist optional (Standard: "all"), einzelne Daten mit ; getrennt
+     * venueAvailability ist optional (Standard: "all"), einzelne Daten mit ; getrennt.
+     * Bevorzugte Termine (Wunschtermine) werden mit * markiert (z.B. 2026-09-05*;2026-09-12*;2026-09-19)
      * @return the list of application events
      */
     private List<Event> loadApplications() {
@@ -197,7 +205,31 @@ public class DataLoader {
                 String clubName = p[0];
                 String type = p[1];
                 AgeCategory age = AgeCategory.valueOf(p[2]);
-                String venueAvailability = p.length > 3 ? p[3] : "all";
+                String rawAvailability = p.length > 3 ? p[3] : "all";
+
+                // Bevorzugte Termine mit * markiert extrahieren
+                String venueAvailability;
+                String preferredDates = null;
+                if (!rawAvailability.equals("all")) {
+                    List<String> allDates = new ArrayList<>();
+                    List<String> preferred = new ArrayList<>();
+                    for (String d : rawAvailability.split(";")) {
+                        String trimmed = d.trim();
+                        if (trimmed.endsWith("*")) {
+                            String date = trimmed.substring(0, trimmed.length() - 1);
+                            allDates.add(date);
+                            preferred.add(date);
+                        } else {
+                            allDates.add(trimmed);
+                        }
+                    }
+                    venueAvailability = String.join(";", allDates);
+                    if (!preferred.isEmpty()) {
+                        preferredDates = String.join(";", preferred);
+                    }
+                } else {
+                    venueAvailability = rawAvailability;
+                }
 
                 Club club = clubs.get(clubName);
 
@@ -210,6 +242,7 @@ public class DataLoader {
                 );
                 e.setCountsAsNationalQ(type.equals("QB"));
                 e.setVenueAvailability(venueAvailability);
+                e.setPreferredDates(preferredDates);
 
                 events.add(e);
             }

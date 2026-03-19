@@ -22,6 +22,8 @@ private Club club;
 private String type;
 private boolean countsAsNationalQ;
 private String venueAvailability;
+// Bevorzugte Termine des Veranstalters (Subset von venueAvailability, mit * markiert in applications.csv)
+private String preferredDates;
 
 private Weekend fixedWeekend;
 
@@ -155,6 +157,22 @@ return venueAvailability;
  */
 public void setVenueAvailability(String venueAvailability){
 this.venueAvailability=venueAvailability;
+}
+
+/**
+ * Returns the preferred dates for the event (subset of venue availability).
+ * @return the preferred dates as semicolon-separated string, or null if none
+ */
+public String getPreferredDates(){
+return preferredDates;
+}
+
+/**
+ * Sets the preferred dates for the event.
+ * @param preferredDates the preferred dates to set
+ */
+public void setPreferredDates(String preferredDates){
+this.preferredDates=preferredDates;
 }
 
 }
