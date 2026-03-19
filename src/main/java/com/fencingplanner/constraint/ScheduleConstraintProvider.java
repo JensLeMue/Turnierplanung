@@ -1,13 +1,15 @@
 package com.fencingplanner.constraint;
 
-import com.fencingplanner.model.*;
-
-import ai.timefold.solver.core.api.score.stream.*;
-import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
-
 import java.time.temporal.ChronoUnit;
-import java.time.Month;
-import java.util.List;
+
+import com.fencingplanner.model.AgeCategory;
+import com.fencingplanner.model.Event;
+
+import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
+import ai.timefold.solver.core.api.score.stream.Constraint;
+import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
+import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
+import ai.timefold.solver.core.api.score.stream.Joiners;
 
 public class ScheduleConstraintProvider implements ConstraintProvider {
 
@@ -34,6 +36,7 @@ qbEquivalentOverlap(factory),
 venueAvailability(factory),
 athleteOverlap(factory),
             minWeeksBetweenTournaments(factory),
+dmWeekendConstraints(factory),
 dmBeforeEmWm(factory),
 dmAfterQ(factory),
 evenMonthlyDistribution(factory)
@@ -51,7 +54,8 @@ evenMonthlyDistribution(factory)
 
 return factory.forEach(Event.class)
 
-.filter(e -> e.getWeekend()!=null && e.getWeekend().isBlocked())
+.filter(e -> e.getWeekend()!=null && e.getWeekend().isBlocked()
+    && !e.getType().equals("EFC") && !e.getType().equals("FIE"))
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("blocked weekend");
 
