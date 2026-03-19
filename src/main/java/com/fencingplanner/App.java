@@ -1,12 +1,14 @@
 package com.fencingplanner;
 
-import com.fencingplanner.model.*;
-
-import ai.timefold.solver.core.api.solver.*;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fencingplanner.model.Schedule;
+import com.fencingplanner.model.Weekend;
+
+import ai.timefold.solver.core.api.solver.Solver;
+import ai.timefold.solver.core.api.solver.SolverFactory;
 
 public class App {
 
@@ -15,7 +17,7 @@ public class App {
     static {
         HOLIDAYS.put(java.time.LocalDate.of(2026, 11, 21), "Totensonntag");
         HOLIDAYS.put(java.time.LocalDate.of(2026, 12, 26), "2. Weihnachtsfeiertag");
-        HOLIDAYS.put(java.time.LocalDate.of(2027, 1, 2), "Neujahr");
+        // 2027-01-01 (Neujahr) is a Friday, the Saturday 2027-01-02 is not blocked
         HOLIDAYS.put(java.time.LocalDate.of(2027, 4, 17), "Karfreitag");
         HOLIDAYS.put(java.time.LocalDate.of(2027, 5, 29), "Pfingstmontag");
     }
