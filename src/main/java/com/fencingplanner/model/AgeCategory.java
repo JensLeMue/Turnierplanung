@@ -10,6 +10,17 @@ U17,
 U15,
 U13;
 
+// Mindestabstand zwischen Turnieren dieser Altersklasse in Wochen (konfigurierbar über Ressourcen)
+private int minWeeksBetweenTournaments = 3;
+
+public int getMinWeeksBetweenTournaments() {
+    return minWeeksBetweenTournaments;
+}
+
+public void setMinWeeksBetweenTournaments(int minWeeksBetweenTournaments) {
+    this.minWeeksBetweenTournaments = minWeeksBetweenTournaments;
+}
+
 public boolean canStartIn(AgeCategory other){
 
 if(this==other) return true;

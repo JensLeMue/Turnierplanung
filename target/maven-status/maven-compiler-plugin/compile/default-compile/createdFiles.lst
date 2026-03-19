@@ -1,6 +1,7 @@
 com/fencingplanner/model/Event.class
 com/fencingplanner/constraint/ScheduleConstraintProvider.class
 com/fencingplanner/model/AgeCategory.class
+com/fencingplanner/model/FixedEventPinningFilter.class
 com/fencingplanner/App.class
 com/fencingplanner/model/Schedule.class
 com/fencingplanner/DataLoader.class

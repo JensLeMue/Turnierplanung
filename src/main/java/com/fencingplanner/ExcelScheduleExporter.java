@@ -25,11 +25,20 @@ public class ExcelScheduleExporter {
     private final Schedule schedule;
     private final String outputPath;
 
+    /**
+     * Constructs an ExcelScheduleExporter with the given schedule and output path.
+     * @param schedule the schedule to export
+     * @param outputPath the path where the Excel file will be saved
+     */
     public ExcelScheduleExporter(Schedule schedule, String outputPath) {
         this.schedule = schedule;
         this.outputPath = outputPath;
     }
 
+    /**
+     * Exports the schedule to an Excel file.
+     * @throws IOException if an error occurs during file writing
+     */
     public void export() throws IOException {
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("Turnierplanung");
@@ -52,6 +61,10 @@ public class ExcelScheduleExporter {
         }
     }
 
+    /**
+     * Creates the header row in the Excel sheet with weekend and age category columns.
+     * @param sheet the Excel sheet to create the header in
+     */
     private void createHeader(Sheet sheet) {
         Row headerRow = sheet.createRow(0);
         headerRow.setHeightInPoints(25);
@@ -84,6 +97,10 @@ public class ExcelScheduleExporter {
         }
     }
 
+    /**
+     * Populates the Excel sheet with schedule data, organizing events by weekend and age category.
+     * @param sheet the Excel sheet to populate
+     */
     private void populateData(Sheet sheet) {
         // Events nach Wochenende sortieren
         List<Weekend> weekends = schedule.getWeekends().stream()
@@ -138,6 +155,11 @@ public class ExcelScheduleExporter {
         }
     }
 
+    /**
+     * Creates the cell style for date cells in the Excel sheet.
+     * @param workbook the Excel workbook
+     * @return the cell style for date cells
+     */
     private CellStyle createDateCellStyle(Workbook workbook) {
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
@@ -155,6 +177,12 @@ public class ExcelScheduleExporter {
         return style;
     }
 
+    /**
+     * Creates the cell style for event cells in the Excel sheet, with color coding based on event type.
+     * @param workbook the Excel workbook
+     * @param eventType the type of the event to determine the color
+     * @return the cell style for event cells
+     */
     private CellStyle createEventCellStyle(Workbook workbook, String eventType) {
         if (workbook instanceof XSSFWorkbook) {
             XSSFCellStyle style = (XSSFCellStyle) workbook.createCellStyle();
@@ -188,6 +216,10 @@ public class ExcelScheduleExporter {
         }
     }
 
+    /**
+     * Adjusts the column widths in the Excel sheet for better readability.
+     * @param sheet the Excel sheet to adjust
+     */
     private void adjustColumnWidths(Sheet sheet) {
         sheet.setColumnWidth(0, 25 * 256);
         for (int i = 1; i <= 7; i++) {
