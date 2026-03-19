@@ -39,6 +39,8 @@ public class DataLoader {
 
     /**
      * Loads the list of clubs from the clubs.csv file.
+     * Anpassbar in: src/main/resources/clubs.csv
+     * Format: name
      * @return the list of clubs
      */
     private List<Club> loadClubs() {
@@ -74,6 +76,8 @@ public class DataLoader {
 
     /**
      * Loads the list of weekends from the weekends.csv file.
+     * Anpassbar in: src/main/resources/weekends.csv
+     * Format: date,blocked (z.B. 2026-09-05,false)
      * @return the list of weekends
      */
     private List<Weekend> loadWeekends() {
@@ -112,6 +116,8 @@ public class DataLoader {
 
     /**
      * Loads fixed events (FIE/EFC) from the events.csv file and assigns them to their fixed weekends.
+     * Anpassbar in: src/main/resources/events.csv
+     * Format: name,type,ageCategory,fixedDate,qbEquivalent (z.B. FIE_Basel,FIE,U20,2027-01-02,false)
      * @param weekends the list of available weekends
      * @return the list of fixed events
      */
@@ -166,6 +172,9 @@ public class DataLoader {
 
     /**
      * Loads application events from the applications.csv file.
+     * Anpassbar in: src/main/resources/applications.csv
+     * Format: club,type,ageCategory[,venueAvailability] (z.B. Heidenheim,QB,U17,all)
+     * venueAvailability ist optional (Standard: "all"), einzelne Daten mit ; getrennt
      * @return the list of application events
      */
     private List<Event> loadApplications() {
@@ -218,6 +227,8 @@ public class DataLoader {
 
     /**
      * Loads the minimum weeks gap configuration for age categories from ageCategoryWeekGap.csv.
+     * Anpassbar in: src/main/resources/ageCategoryWeekGap.csv
+     * Format: ageCategory,minWeeksBetweenTournaments (z.B. U17,2)
      */
     private void loadAgeCategoryWeekGaps() {
         try (BufferedReader br = new BufferedReader(
