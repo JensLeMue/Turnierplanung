@@ -30,7 +30,7 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 | Athlete Overlap | Keine zwei Turniere am selben Wochenende, wenn Athleten in beiden Altersklassen startberechtigt wären |
 | DM Weekend Constraints | U15+U20 DMs und U13+U17 DMs am gleichen Wochenende |
 | DM Before EM/WM | Deutsche Meisterschaften vor der EM/WM derselben Altersklasse |
-| DM After Q | Deutsche Meisterschaften nach den Qualifikationsturnieren |
+| DM After Q | Deutsche Meisterschaften nach den Qualifikations- und Challenge-Turnieren |
 
 Zusätzlich werden Events mit festen Terminen (`fixedWeekend`) über einen **Pinning-Filter** (`FixedEventPinningFilter`) komplett aus der Optimierung ausgeschlossen, um externe Termine zuverlässig zu bewahren.
 

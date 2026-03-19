@@ -25,7 +25,7 @@ import ai.timefold.solver.core.api.score.stream.Joiners;
  *   <li>{@code athleteOverlap} – Keine zwei Events mit überlappenden Altersklassen am selben Wochenende</li>
  *   <li>{@code dmWeekendConstraints} – DM-Paarungen (U15+U20, U13+U17) am selben Wochenende</li>
  *   <li>{@code dmBeforeEmWm} – DMs vor den zugehörigen EM/WM-Terminen</li>
- *   <li>{@code dmAfterQ} – DMs nach den Qualifikationsturnieren</li>
+ *   <li>{@code dmAfterQ} – DMs nach den Qualifikations- und Challenge-Turnieren</li>
  * </ul>
  *
  * <h3>Soft-Constraints (Optimierungsziele, gewichtet):</h3>
@@ -308,26 +308,26 @@ return factory.forEachUniquePair(Event.class)
 
 /**
  * HARD: Deutsche Meisterschaften müssen zeitlich nach den Qualifikationsturnieren (QB)
- * derselben Altersklasse liegen. Reihenfolge: QB → DM → EM/WM.
+ * und Challenge-Events derselben Altersklasse liegen. Reihenfolge: QB/CHALLENGE → DM → EM/WM.
  */
 private Constraint dmAfterQ(ConstraintFactory factory){
 
 return factory.forEachUniquePair(Event.class)
 
-.filter((a, b) -> 
-    ((a.getType().equals("DM") && b.getType().equals("QB")) ||
-     (a.getType().equals("QB") && b.getType().equals("DM"))) &&
-    a.getAgeCategory() == b.getAgeCategory() &&
-    (a.getAgeCategory() == AgeCategory.SEN || a.getAgeCategory() == AgeCategory.U23 || 
-     a.getAgeCategory() == AgeCategory.U17 || a.getAgeCategory() == AgeCategory.U15 ||
-     a.getAgeCategory() == AgeCategory.U13 || a.getAgeCategory() == AgeCategory.U20) &&
-    a.getWeekend() != null && b.getWeekend() != null
-)
+.filter((a, b) -> {
+    boolean aIsDm = a.getType().equals("DM");
+    boolean bIsDm = b.getType().equals("DM");
+    boolean aIsPreDm = a.getType().equals("QB") || a.getType().equals("CHALLENGE");
+    boolean bIsPreDm = b.getType().equals("QB") || b.getType().equals("CHALLENGE");
+    return ((aIsDm && bIsPreDm) || (bIsDm && aIsPreDm)) &&
+        a.getAgeCategory() == b.getAgeCategory() &&
+        a.getWeekend() != null && b.getWeekend() != null;
+})
 
 .filter((a, b) -> {
     Event dm = a.getType().equals("DM") ? a : b;
-    Event q = a.getType().equals("QB") ? a : b;
-    return dm.getWeekend().getDate().isBefore(q.getWeekend().getDate());
+    Event preDm = a.getType().equals("DM") ? b : a;
+    return dm.getWeekend().getDate().isBefore(preDm.getWeekend().getDate());
 })
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("DM after Q");
