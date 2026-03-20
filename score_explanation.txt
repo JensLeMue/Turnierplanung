@@ -12,4 +12,5 @@ Beispiele für Constraints:
 - FIE fixed: FIE-Events auf festen Terminen
 - qb equivalent overlap: Keine Überlappungen bei Qualifikationsturnieren
 - min weeks between tournaments: Mindestabstand zwischen Turnieren derselben Kategorie
-- even monthly distribution: Gleichmäßige Verteilung (neu hinzugefügt)
+- even monthly distribution: Gleichmäßige Verteilung
+- preferred date reward: Bonus (+20) wenn ein Turnier auf einen bevorzugten Wunschtermin des Ausrichters gelegt wird

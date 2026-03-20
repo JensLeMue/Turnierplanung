@@ -11,6 +11,7 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 - **Fixe internationale Termine**: FIE- und EFC-Turniere werden als unveränderliche Vorgaben übernommen, DMs zum Saisonende nach den Q-Turnieren, vor der EM/WM. Da muss man die Daten für haben.
 - **Altersklassen**: VET, SEN, U23, U20, U17, U15, U14 werden berücksichtigt
 - **Bewerbungen der Ausrichter**: Vereine bewerben sich als Ausrichter und werden auf die Saison verteilt
+- **Bevorzugte Wochenenden**: Ausrichter können in ihrer Bewerbung einzelne Termine als bevorzugt (`*`) markieren – der Solver versucht, diese Wunschtermine bevorzugt zuzuweisen (+20 Soft-Score-Bonus)
 - **Konflikterkennung**: Überlappende Altersklassen (z. B. U20-Athleten dürfen auch bei SEN starten) werden nie auf dasselbe Wochenende gelegt
 - **Gesperrte Wochenenden**: Feiertage/Ferien können als blockiert markiert werden
 
@@ -22,6 +23,15 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 | FIE Fixed | FIE-Turniere bleiben auf ihrem fixen Datum |
 | EFC Fixed | EFC-Turniere bleiben auf ihrem fixen Datum |
 | Athlete Overlap | Keine zwei Turniere am selben Wochenende, wenn Athleten in beiden Altersklassen startberechtigt wären |
+| Venue Availability | Turnier darf nur auf ein Wochenende gelegt werden, an dem der Ausrichter verfügbar ist |
+
+### Implementierte Constraints (Soft)
+
+| Constraint | Beschreibung |
+|---|---|
+| Preferred Date Reward | +20 Bonus, wenn ein Turnier auf einen bevorzugten Wunschtermin des Ausrichters gelegt wird |
+| Min Weeks Between Tournaments | Mindestabstand in Wochen zwischen Turnieren derselben Altersklasse |
+| Even Monthly Distribution | Gleichmäßige Verteilung der Turniere über die Monate |
 
 ### Geplante Erweiterungen
 
@@ -74,8 +84,13 @@ EFC_Dublin,EFC,SEN,2026-10-18,false
 ```csv
 club,type,ageCategory,venueAvailability
 Leverkusen,QB,SEN,all
-Reutlingen,QB,SEN,2026-10-18;2026-11-15;2027-02-20
+Reutlingen,QB,SEN,2026-10-03;2026-10-10;2026-11-07*;2026-11-14*
+Solingen,QB,U17,2026-09-26*;2026-10-10*;2026-11-07*;2026-12-12
 ```
+
+- `all` = Ausrichter ist an allen Wochenenden verfügbar
+- Datum ohne `*` = verfügbar, aber kein Wunschtermin
+- Datum mit `*` = bevorzugter Wunschtermin (Soft-Constraint belohnt Zuweisung)
 
 ## Projektstruktur
 
@@ -92,6 +107,30 @@ src/main/java/com/fencingplanner/
     ├── Schedule.java                 # Gesamtplan (Planning Solution)
     └── Weekend.java                  # Wochenende (Planning Variable Range)
 ```
+
+## Score-Erklärung (`score_explanation.txt`)
+
+Nach jedem Solver-Durchlauf wird automatisch die Datei `score_explanation.txt` erzeugt. Sie enthält eine detaillierte Aufschlüsselung des Optimierungsergebnisses:
+
+- **Overall Score**: Gesamtwertung als `hard/soft` (z. B. `0hard/-4520soft`)
+- **Hard-Constraints**: Auflistung aller verletzten Pflicht-Constraints, sortiert nach Schwere. Ein Hard-Score < 0 bedeutet, dass noch Regelverletzungen existieren (z. B. Turniere auf gesperrten Wochenenden).
+- **Soft-Constraints**: Auflistung aller Optimierungs-Constraints mit Score und Anzahl betroffener Event-Paare (Matches). Negative Werte = Strafen (z. B. zu geringe Abstände), positive Werte = Belohnungen (z. B. Wunschtermine getroffen).
+
+Beispielausgabe:
+
+```
+--- Hard-Constraints (größte Verletzungen zuerst) ---
+  Constraint                              Score    Matches
+  blocked weekend                            -2          2
+
+--- Soft-Constraints (größte Faktoren zuerst) ---
+  Constraint                              Score    Matches
+  even monthly distribution               -5200         38
+  min weeks between tournaments            -450          8
+  preferred date reward                      60          3
+```
+
+Die gleiche Aufschlüsselung wird auch auf der Konsole ausgegeben.
 
 ## Technologie-Stack
 

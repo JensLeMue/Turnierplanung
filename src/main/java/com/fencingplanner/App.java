@@ -2,11 +2,16 @@ package com.fencingplanner;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.fencingplanner.model.Schedule;
 import com.fencingplanner.model.Weekend;
 
+import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
+import ai.timefold.solver.core.api.score.constraint.ConstraintMatchTotal;
+import ai.timefold.solver.core.api.solver.SolutionManager;
 import ai.timefold.solver.core.api.solver.Solver;
 import ai.timefold.solver.core.api.solver.SolverFactory;
 
@@ -44,20 +49,83 @@ public class App {
 
         Schedule solution = solver.solve(problem);
 
+        // Constraint-Aufschlüsselung via SolutionManager
+        SolutionManager<Schedule, HardSoftScore> solutionManager = SolutionManager.create(factory);
+        Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMap =
+                solutionManager.explain(solution).getConstraintMatchTotalMap();
+
+        // Hard- und Soft-Constraints getrennt, nach Auswirkung sortiert
+        List<ConstraintMatchTotal<HardSoftScore>> hardConstraints = constraintMap.values().stream()
+                .filter(c -> c.getScore().hardScore() != 0)
+                .sorted(Comparator.comparingInt(c -> c.getScore().hardScore()))
+                .collect(Collectors.toList());
+
+        List<ConstraintMatchTotal<HardSoftScore>> softConstraints = constraintMap.values().stream()
+                .filter(c -> c.getScore().softScore() != 0)
+                .sorted(Comparator.comparingInt(c -> c.getScore().softScore()))
+                .collect(Collectors.toList());
+
+        // Konsolen-Ausgabe der Constraint-Aufschlüsselung
+        System.out.println("\n===== CONSTRAINT-AUFSCHLÜSSELUNG =====\n");
+        System.out.println("Overall Score: " + solution.getScore());
+
+        System.out.println("\n--- Hard-Constraints (größte Verletzungen zuerst) ---");
+        if (hardConstraints.isEmpty()) {
+            System.out.println("  Keine Hard-Constraint-Verletzungen!");
+        } else {
+            System.out.println(String.format("  %-35s %10s %10s", "Constraint", "Score", "Matches"));
+            for (ConstraintMatchTotal<HardSoftScore> c : hardConstraints) {
+                System.out.println(String.format("  %-35s %10d %10d",
+                        c.getConstraintRef().constraintName(), c.getScore().hardScore(), c.getConstraintMatchCount()));
+            }
+        }
+
+        System.out.println("\n--- Soft-Constraints (größte Faktoren zuerst) ---");
+        if (softConstraints.isEmpty()) {
+            System.out.println("  Keine Soft-Constraint-Verletzungen.");
+        } else {
+            System.out.println(String.format("  %-35s %10s %10s", "Constraint", "Score", "Matches"));
+            for (ConstraintMatchTotal<HardSoftScore> c : softConstraints) {
+                System.out.println(String.format("  %-35s %10d %10d",
+                        c.getConstraintRef().constraintName(), c.getScore().softScore(), c.getConstraintMatchCount()));
+            }
+        }
+
         // Score-Erklärung in Datei schreiben
         try (java.io.PrintWriter writer = new java.io.PrintWriter("score_explanation.txt")) {
             writer.println("===== SCORE EXPLANATION =====\n");
             writer.println("Overall Score: " + solution.getScore());
-            writer.println("\nDieser Score setzt sich aus Hard- und Soft-Constraints zusammen:");
-            writer.println("- Hard-Constraints (müssen erfüllt sein, z.B. feste Termine, keine Überlappungen): " + solution.getScore().hardScore());
-            writer.println("- Soft-Constraints (optimierbar, z.B. Mindestabstände, gleichmäßige Verteilung): " + solution.getScore().softScore());
-            writer.println("\nDie einzelnen Constraint-Verletzungen können in der Konsole oder durch Debugging analysiert werden.");
-            writer.println("Beispiele für Constraints:");
-            writer.println("- blocked weekend: Events nicht auf blockierten Wochenenden");
-            writer.println("- FIE fixed: FIE-Events auf festen Terminen");
-            writer.println("- qb equivalent overlap: Keine Überlappungen bei Qualifikationsturnieren");
-            writer.println("- min weeks between tournaments: Mindestabstand zwischen Turnieren derselben Kategorie");
-            writer.println("- even monthly distribution: Gleichmäßige Verteilung (neu hinzugefügt)");
+            writer.println("  Hard-Score: " + solution.getScore().hardScore());
+            writer.println("  Soft-Score: " + solution.getScore().softScore());
+
+            writer.println("\n--- Hard-Constraints (größte Verletzungen zuerst) ---");
+            if (hardConstraints.isEmpty()) {
+                writer.println("  Keine Hard-Constraint-Verletzungen!");
+            } else {
+                writer.println(String.format("  %-35s %10s %10s", "Constraint", "Score", "Matches"));
+                for (ConstraintMatchTotal<HardSoftScore> c : hardConstraints) {
+                    writer.println(String.format("  %-35s %10d %10d",
+                            c.getConstraintRef().constraintName(), c.getScore().hardScore(), c.getConstraintMatchCount()));
+                }
+            }
+
+            writer.println("\n--- Soft-Constraints (größte Faktoren zuerst) ---");
+            if (softConstraints.isEmpty()) {
+                writer.println("  Keine Soft-Constraint-Verletzungen.");
+            } else {
+                writer.println(String.format("  %-35s %10s %10s", "Constraint", "Score", "Matches"));
+                for (ConstraintMatchTotal<HardSoftScore> c : softConstraints) {
+                    writer.println(String.format("  %-35s %10d %10d",
+                            c.getConstraintRef().constraintName(), c.getScore().softScore(), c.getConstraintMatchCount()));
+                }
+            }
+
+            writer.println("\n--- Legende ---");
+            writer.println("Score:   Gesamtauswirkung des Constraints auf den Score");
+            writer.println("         Hard < 0 = Verletzung (muss gelöst werden)");
+            writer.println("         Soft < 0 = Strafe (Optimierungspotenzial)");
+            writer.println("         Soft > 0 = Belohnung (z.B. Wunschtermine)");
+            writer.println("Matches: Anzahl betroffener Event-Kombinationen");
         } catch (java.io.FileNotFoundException e) {
             System.err.println("Fehler beim Schreiben der Score-Erklärung: " + e.getMessage());
         }
