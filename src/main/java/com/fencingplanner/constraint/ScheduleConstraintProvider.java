@@ -1,5 +1,6 @@
 package com.fencingplanner.constraint;
 
+import java.time.Month;
 import java.time.temporal.ChronoUnit;
 
 import com.fencingplanner.model.AgeCategory;
@@ -10,6 +11,7 @@ import ai.timefold.solver.core.api.score.stream.Constraint;
 import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
 import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
 import ai.timefold.solver.core.api.score.stream.Joiners;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Definiert alle Hard- und Soft-Constraints für die Turnierplanung.
@@ -31,8 +33,10 @@ import ai.timefold.solver.core.api.score.stream.Joiners;
  * <h3>Soft-Constraints (Optimierungsziele, gewichtet):</h3>
  * <ul>
  *   <li>{@code minWeeksBetweenTournaments} – Mindestabstand zwischen Turnieren pro Altersklasse (Gewicht: ×15)</li>
- *   <li>{@code evenMonthlyDistribution} – Gleichmäßige Verteilung über die Saison (Gewicht: ×1)</li>
+ *   <li>{@code seasonalGapDistribution} – Verteilung über die Saison anhand aufeinanderfolgender Events (Gewicht: ×1)</li>
  *   <li>{@code eventsBeforeDm} – Nationale/Regionale Turniere sollen vor der DM liegen (Gewicht: ×10)</li>
+ *   <li>{@code u17SeptemberQualifier} – U17 soll mindestens ein QB/Challenge im September haben</li>
+ *   <li>{@code u17PostDmQualifier} – U17 soll mindestens ein QB/Challenge nach der DM haben (Folgesaison)</li>
  *   <li>{@code preferredDateReward} – Belohnung für Zuweisung auf Wunschtermine des Veranstalters (Gewicht: ×20)</li>
  * </ul>
  */
@@ -41,7 +45,7 @@ public class ScheduleConstraintProvider implements ConstraintProvider {
     public ScheduleConstraintProvider() {}
 
     @Override
-    public Constraint[] defineConstraints(ConstraintFactory factory){
+    public Constraint @NonNull[] defineConstraints(@NonNull ConstraintFactory factory){
 
 return new Constraint[]{
 
@@ -55,11 +59,22 @@ venueAvailability(factory),
 athleteOverlap(factory),
 athleteOverlapFixed(factory),
             minWeeksBetweenTournaments(factory),
+minWeeksBetweenU15Challenges(factory),
+maxWeeksBetweenU15Challenges(factory),
+            u15ChallengeWinterAnchor(factory),
 dmWeekendConstraints(factory),
 dmBeforeEmWm(factory),
 dmAfterQ(factory),
-evenMonthlyDistribution(factory),
+seasonalGapDistribution(factory),
 eventsBeforeDm(factory),
+u17SeptemberQualifier(factory),
+u17AtMostOneSeptemberQualifier(factory),
+u17PostDmQualifier(factory),
+u17PostDmQualifierTiming(factory),
+senNovemberTournament(factory),
+senJanuaryTournament(factory),
+senMarchTournament(factory),
+senNationalQPreferredMonths(factory),
 preferredDateReward(factory)
 
 };
@@ -310,6 +325,78 @@ b.getAgeCategory().canStartIn(a.getAgeCategory()))
 }
 
 /**
+ * SOFT (streng): U15-Challenge-Turniere sollen mit größerem Abstand geplant werden.
+ * Mindestabstand: 4 Wochen (nur CHALLENGE, nur U15).
+ */
+private Constraint minWeeksBetweenU15Challenges(ConstraintFactory factory) {
+    return factory.forEachUniquePair(Event.class,
+            Joiners.filtering((a, b) ->
+                    a.getType().equals("CHALLENGE") && b.getType().equals("CHALLENGE") &&
+                    a.getAgeCategory() == AgeCategory.U15 && b.getAgeCategory() == AgeCategory.U15))
+
+            .filter((a, b) -> a.getWeekend() != null && b.getWeekend() != null)
+
+            .filter((a, b) -> {
+                long weeks = Math.abs(ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate()));
+                return weeks < 4;
+            })
+
+            .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+                long weeks = Math.abs(ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate()));
+                return (int) (4 - weeks) * 20;
+            })
+            .asConstraint("min weeks between u15 challenge tournaments");
+}
+
+        /**
+         * SOFT (gleichmaessig): U15-Challenge-Turniere sollen nicht zu weit auseinander liegen.
+         * Bewertet nur aufeinanderfolgende U15-Challenges und bestraft Luecken groesser als 7 Wochen.
+         */
+        private Constraint maxWeeksBetweenU15Challenges(ConstraintFactory factory) {
+            return factory.forEachUniquePair(Event.class,
+                Joiners.filtering((a, b) ->
+                    a.getType().equals("CHALLENGE") && b.getType().equals("CHALLENGE") &&
+                    a.getAgeCategory() == AgeCategory.U15 && b.getAgeCategory() == AgeCategory.U15))
+
+                .filter((a, b) ->
+                    a.getWeekend() != null &&
+                    b.getWeekend() != null &&
+                    a.getWeekend().getDate().isBefore(b.getWeekend().getDate()))
+
+                .ifNotExists(Event.class,
+                    Joiners.filtering((a, b, c) ->
+                        c.getType().equals("CHALLENGE") &&
+                        c.getAgeCategory() == AgeCategory.U15 &&
+                        c.getWeekend() != null &&
+                        c.getWeekend().getDate().isAfter(a.getWeekend().getDate()) &&
+                        c.getWeekend().getDate().isBefore(b.getWeekend().getDate())))
+
+                .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+                long weeks = ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate());
+                return weeks > 7 ? (int) (weeks - 7) * 15 : 0;
+                })
+                .asConstraint("max weeks between u15 challenge tournaments");
+        }
+
+    /**
+     * HARD: U15-Challenge muss im Winter mindestens einmal stattfinden,
+     * damit keine zu grosse Luecke von Herbst bis spaeter Saison entsteht.
+     */
+    private Constraint u15ChallengeWinterAnchor(ConstraintFactory factory) {
+        return factory.forEach(Event.class)
+            .filter(e -> e.getType().equals("CHALLENGE") && e.getAgeCategory() == AgeCategory.U15)
+            .ifNotExists(Event.class,
+                Joiners.filtering((ignored, e) ->
+                    e.getType().equals("CHALLENGE")
+                    && e.getAgeCategory() == AgeCategory.U15
+                    && e.getWeekend() != null
+                    && (e.getWeekend().getDate().getMonth() == Month.DECEMBER
+                        || e.getWeekend().getDate().getMonth() == Month.JANUARY)))
+            .penalize(HardSoftScore.ONE_HARD)
+            .asConstraint("u15 challenge winter anchor");
+    }
+
+/**
  * HARD: Bestimmte DM-Paarungen müssen am selben Wochenende stattfinden:
  * - U15 + U20 gemeinsam
  * - U13 + U17 gemeinsam
@@ -378,6 +465,8 @@ return factory.forEachUniquePair(Event.class)
     boolean aIsPreDm = a.getType().equals("QB") || a.getType().equals("CHALLENGE");
     boolean bIsPreDm = b.getType().equals("QB") || b.getType().equals("CHALLENGE");
     return ((aIsDm && bIsPreDm) || (bIsDm && aIsPreDm)) &&
+        // U17 darf bewusst auch ein Q/Challenge nach der DM haben (zählt zur Folgesaison).
+        a.getAgeCategory() != AgeCategory.U17 &&
         a.getAgeCategory() == b.getAgeCategory() &&
         a.getWeekend() != null && b.getWeekend() != null;
 })
@@ -393,18 +482,45 @@ return factory.forEachUniquePair(Event.class)
 }
 
 /**
- * SOFT (Gewicht ×1): Gleichmäßige Verteilung der Turniere über die Saison.
- * Bestraft Eventpaare derselben Altersklasse, die mehr als 4 Wochen (28 Tage) auseinander liegen.
- * Strafe = Tage über 28 hinaus. Verhindert große Lücken im Turnierkalender.
+ * SOFT (Gewicht ×1): Verteilung über die Saison anhand aufeinanderfolgender Events.
+ * Statt alle Paare einer Altersklasse zu vergleichen, werden nur direkte Nachbarn in der Zeitlinie betrachtet.
+ * Dadurch entsteht keine übermäßige "Monatsoptimierung" durch weit entfernte Paare.
  */
-private Constraint evenMonthlyDistribution(ConstraintFactory factory) {
+private Constraint seasonalGapDistribution(ConstraintFactory factory) {
     return factory.forEachUniquePair(Event.class, Joiners.equal(Event::getAgeCategory))
-        .filter((a, b) -> a.getWeekend() != null && b.getWeekend() != null)
+        .filter((a, b) ->
+            a.getWeekend() != null &&
+            b.getWeekend() != null &&
+            a.getWeekend().getDate().isBefore(b.getWeekend().getDate()))
+        .ifNotExists(Event.class,
+            Joiners.equal((a, b) -> a.getAgeCategory(), Event::getAgeCategory),
+            Joiners.filtering((a, b, c) ->
+                c.getWeekend() != null &&
+                c.getWeekend().getDate().isAfter(a.getWeekend().getDate()) &&
+                c.getWeekend().getDate().isBefore(b.getWeekend().getDate())))
         .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
-            long daysBetween = ChronoUnit.DAYS.between(a.getWeekend().getDate(), b.getWeekend().getDate());
-            return daysBetween > 28 ? (int) (daysBetween - 28) : 0;
+            long weeksBetween = ChronoUnit.WEEKS.between(a.getWeekend().getDate(), b.getWeekend().getDate());
+            long maxGapWeeks = getMaxSeasonGapWeeks(a.getAgeCategory());
+            return weeksBetween > maxGapWeeks ? (int) (weeksBetween - maxGapWeeks) : 0;
         })
-        .asConstraint("even monthly distribution");
+        .asConstraint("seasonal gap distribution");
+}
+
+/**
+ * Feinjustierbare obere Lücke (in Wochen) je Altersklasse.
+ * Höherer Wert = weitere Verteilung erlaubt, niedriger Wert = dichterer Rhythmus.
+ */
+private int getMaxSeasonGapWeeks(AgeCategory ageCategory) {
+    return switch (ageCategory) {
+        case VET -> 12;
+        case SEN -> 8;
+        case U23 -> 8;
+        case U20 -> 12;
+        case U17 -> 8;
+        case U15 -> 8;
+        case U14 -> 8;
+        case U13 -> 8;
+    };
 }
 
 /**
@@ -431,6 +547,10 @@ private Constraint eventsBeforeDm(ConstraintFactory factory) {
             if (type.equals("FIE") || type.equals("EFC") || type.equals("EM") || type.equals("WM")) {
                 return false;
             }
+            // U17 darf bewusst ein Turnier nach der DM haben (Folgesaison).
+            if (dm.getAgeCategory() == AgeCategory.U17) {
+                return false;
+            }
             return other.getWeekend().getDate().isAfter(dm.getWeekend().getDate());
         })
         .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
@@ -439,6 +559,163 @@ private Constraint eventsBeforeDm(ConstraintFactory factory) {
             return (int) ChronoUnit.WEEKS.between(dm.getWeekend().getDate(), other.getWeekend().getDate()) * 10;
         })
         .asConstraint("events before DM");
+}
+
+    /**
+     * HARD: U17 benötigt mindestens ein QB/Challenge-Turnier im September.
+     */
+    private Constraint u17SeptemberQualifier(ConstraintFactory factory) {
+        return factory.forEach(Event.class)
+        .filter(dm -> dm.getType().equals("DM")
+            && dm.getAgeCategory() == AgeCategory.U17
+            && dm.getWeekend() != null)
+        .ifNotExists(Event.class,
+            Joiners.filtering((dm, e) ->
+            e.getAgeCategory() == AgeCategory.U17
+            && (e.getType().equals("QB") || e.getType().equals("CHALLENGE"))
+            && e.getWeekend() != null
+            && e.getWeekend().getDate().getMonth() == Month.SEPTEMBER))
+        .penalize(HardSoftScore.ONE_HARD)
+        .asConstraint("u17 september qualifier");
+    }
+
+    /**
+     * HARD: Für U17 soll es im September genau ein QB/Challenge geben.
+     * (mindestens eins über u17SeptemberQualifier, höchstens eins über diese Regel)
+     */
+    private Constraint u17AtMostOneSeptemberQualifier(ConstraintFactory factory) {
+        return factory.forEachUniquePair(Event.class)
+            .filter((a, b) ->
+                a.getAgeCategory() == AgeCategory.U17 &&
+                b.getAgeCategory() == AgeCategory.U17 &&
+                (a.getType().equals("QB") || a.getType().equals("CHALLENGE")) &&
+                (b.getType().equals("QB") || b.getType().equals("CHALLENGE")) &&
+                a.getWeekend() != null &&
+                b.getWeekend() != null &&
+                a.getWeekend().getDate().getMonth() == Month.SEPTEMBER &&
+                b.getWeekend().getDate().getMonth() == Month.SEPTEMBER)
+            .penalize(HardSoftScore.ONE_HARD)
+            .asConstraint("u17 at most one september qualifier");
+    }
+
+    /**
+     * HARD: U17 benötigt mindestens ein QB/Challenge-Turnier nach der U17-DM.
+     * Dieses Turnier wird als Auftakt der Folgesaison akzeptiert.
+     */
+    private Constraint u17PostDmQualifier(ConstraintFactory factory) {
+        return factory.forEach(Event.class)
+        .filter(dm -> dm.getType().equals("DM")
+            && dm.getAgeCategory() == AgeCategory.U17
+            && dm.getWeekend() != null)
+        .ifNotExists(Event.class,
+            Joiners.filtering((dm, e) ->
+            e.getAgeCategory() == AgeCategory.U17
+            && (e.getType().equals("QB") || e.getType().equals("CHALLENGE"))
+            && e.getWeekend() != null
+            && e.getWeekend().getDate().isAfter(dm.getWeekend().getDate())))
+        .penalize(HardSoftScore.ONE_HARD)
+        .asConstraint("u17 post dm qualifier");
+    }
+
+    /**
+     * SOFT (stark): Das U17-Q/Challenge nach der DM soll zeitnah liegen.
+     * Zielwert: innerhalb von 4 Wochen nach der DM.
+     */
+    private Constraint u17PostDmQualifierTiming(ConstraintFactory factory) {
+        return factory.forEachUniquePair(Event.class)
+            .filter((a, b) -> {
+                Event dm;
+                Event q;
+                if (a.getType().equals("DM") && a.getAgeCategory() == AgeCategory.U17
+                        && (b.getType().equals("QB") || b.getType().equals("CHALLENGE"))
+                        && b.getAgeCategory() == AgeCategory.U17) {
+                    dm = a;
+                    q = b;
+                } else if (b.getType().equals("DM") && b.getAgeCategory() == AgeCategory.U17
+                        && (a.getType().equals("QB") || a.getType().equals("CHALLENGE"))
+                        && a.getAgeCategory() == AgeCategory.U17) {
+                    dm = b;
+                    q = a;
+                } else {
+                    return false;
+                }
+                return dm.getWeekend() != null
+                    && q.getWeekend() != null
+                    && q.getWeekend().getDate().isAfter(dm.getWeekend().getDate());
+            })
+            .penalize(HardSoftScore.ONE_SOFT, (a, b) -> {
+                Event dm = a.getType().equals("DM") ? a : b;
+                Event q = a.getType().equals("DM") ? b : a;
+                long weeksAfterDm = ChronoUnit.WEEKS.between(dm.getWeekend().getDate(), q.getWeekend().getDate());
+                return weeksAfterDm > 4 ? (int) (weeksAfterDm - 4) * 30 : 0;
+            })
+            .asConstraint("u17 post dm qualifier timing");
+    }
+
+/**
+ * HARD: Mindestens ein SEN-Event muss im November liegen.
+ */
+private Constraint senNovemberTournament(ConstraintFactory factory) {
+    return factory.forEach(Event.class)
+        .filter(e -> e.getAgeCategory() == AgeCategory.SEN && e.isCountsAsNationalQ())
+        .ifNotExists(Event.class,
+            Joiners.filtering((ignored, e) ->
+                e.getAgeCategory() == AgeCategory.SEN
+                && e.isCountsAsNationalQ()
+                && e.getWeekend() != null
+                && e.getWeekend().getDate().getMonth() == Month.NOVEMBER))
+        .penalize(HardSoftScore.ONE_HARD)
+        .asConstraint("sen november tournament");
+}
+
+/**
+ * HARD: Mindestens ein SEN-Event muss im Januar liegen.
+ */
+private Constraint senJanuaryTournament(ConstraintFactory factory) {
+    return factory.forEach(Event.class)
+        .filter(e -> e.getAgeCategory() == AgeCategory.SEN && e.isCountsAsNationalQ())
+        .ifNotExists(Event.class,
+            Joiners.filtering((ignored, e) ->
+                e.getAgeCategory() == AgeCategory.SEN
+                && e.isCountsAsNationalQ()
+                && e.getWeekend() != null
+                && e.getWeekend().getDate().getMonth() == Month.JANUARY))
+        .penalize(HardSoftScore.ONE_HARD)
+        .asConstraint("sen january tournament");
+}
+
+/**
+ * HARD: Mindestens ein SEN-Event muss im März liegen.
+ */
+private Constraint senMarchTournament(ConstraintFactory factory) {
+    return factory.forEach(Event.class)
+        .filter(e -> e.getAgeCategory() == AgeCategory.SEN && e.isCountsAsNationalQ())
+        .ifNotExists(Event.class,
+            Joiners.filtering((ignored, e) ->
+                e.getAgeCategory() == AgeCategory.SEN
+                && e.isCountsAsNationalQ()
+                && e.getWeekend() != null
+                && e.getWeekend().getDate().getMonth() == Month.MARCH))
+        .penalize(HardSoftScore.ONE_HARD)
+        .asConstraint("sen march tournament");
+}
+
+/**
+ * SOFT (stark gewichtet): Verschiebbare SEN-Q-Turniere sollen bevorzugt in Nov/Jan/März liegen.
+ * Feste Termine werden ausgenommen, damit unvermeidbare externe Vorgaben nicht bestrafen.
+ */
+private Constraint senNationalQPreferredMonths(ConstraintFactory factory) {
+    return factory.forEach(Event.class)
+        .filter(e -> e.getAgeCategory() == AgeCategory.SEN
+                && e.isCountsAsNationalQ()
+                && e.getWeekend() != null
+                && e.getFixedWeekend() == null)
+        .filter(e -> {
+            Month m = e.getWeekend().getDate().getMonth();
+            return m != Month.NOVEMBER && m != Month.JANUARY && m != Month.MARCH;
+        })
+        .penalize(HardSoftScore.ONE_SOFT, e -> 120)
+        .asConstraint("sen national q preferred months");
 }
 
 /**
