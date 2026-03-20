@@ -1,5 +1,4 @@
 com\fencingplanner\model\AgeCategory.class
-com\fencingplanner\model\FixedEventPinningFilter.class
 com\fencingplanner\App.class
 com\fencingplanner\DataLoader.class
 com\fencingplanner\constraint\ScheduleConstraintProvider.class

@@ -1,16 +1,11 @@
 package com.fencingplanner.model;
 
 import ai.timefold.solver.core.api.domain.entity.PlanningEntity;
+import ai.timefold.solver.core.api.domain.entity.PlanningPin;
 import ai.timefold.solver.core.api.domain.lookup.PlanningId;
 import ai.timefold.solver.core.api.domain.variable.PlanningVariable;
 
-@PlanningEntity(
-    // PinningFilter: Events mit fixedWeekend != null werden vom Solver nicht verschoben.
-    // Dies ist notwendig, da Hard-Constraints allein nicht zuverlässig genug sind,
-    // um externe/feste Termine (FIE, EFC) zu bewahren, wenn andere Constraints Druck ausüben.
-    // Pinning ist stärker: gepinnte Entities werden von der Optimierung völlig ausgeschlossen.
-    pinningFilter = FixedEventPinningFilter.class
-)
+@PlanningEntity
 public class Event {
 
 @PlanningId
@@ -27,7 +22,7 @@ private String preferredDates;
 
 private Weekend fixedWeekend;
 
-@PlanningVariable(valueRangeProviderRefs = {"weekends"})  // Array statt String
+@PlanningVariable
 
 private Weekend weekend;
 
@@ -173,6 +168,15 @@ return preferredDates;
  */
 public void setPreferredDates(String preferredDates){
 this.preferredDates=preferredDates;
+}
+
+/**
+ * Returns whether this event is pinned (fixed events are excluded from optimization).
+ * @return true if the event has a fixed weekend assigned
+ */
+@PlanningPin
+public boolean isPinned(){
+return fixedWeekend != null;
 }
 
 }

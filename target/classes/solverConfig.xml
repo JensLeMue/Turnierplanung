@@ -5,11 +5,10 @@
 
     <scoreDirectorFactory>
         <constraintProviderClass>com.fencingplanner.constraint.ScheduleConstraintProvider</constraintProviderClass>
-        <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
     </scoreDirectorFactory>
 
     <termination>
-        <secondsSpentLimit>120</secondsSpentLimit>
+        <secondsSpentLimit>30</secondsSpentLimit>
     </termination>
 
     <constructionHeuristic>
@@ -19,7 +18,7 @@
     <localSearch>
         <localSearchType>TABU_SEARCH</localSearchType>
         <termination>
-            <secondsSpentLimit>60</secondsSpentLimit>
+            <secondsSpentLimit>30</secondsSpentLimit>
         </termination>
     </localSearch>
 </solver>

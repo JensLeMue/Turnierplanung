@@ -1,16 +1,23 @@
 ===== SCORE EXPLANATION =====
 
-Overall Score: -20hard/-15415soft
+Overall Score: 0hard/-15415soft
+  Hard-Score: 0
+  Soft-Score: -15415
 
-Dieser Score setzt sich aus Hard- und Soft-Constraints zusammen:
-- Hard-Constraints (müssen erfüllt sein, z.B. feste Termine, keine Überlappungen): -20
-- Soft-Constraints (optimierbar, z.B. Mindestabstände, gleichmäßige Verteilung): -15415
+--- Hard-Constraints (größte Verletzungen zuerst) ---
+  Keine Hard-Constraint-Verletzungen!
 
-Die einzelnen Constraint-Verletzungen können in der Konsole oder durch Debugging analysiert werden.
-Beispiele für Constraints:
-- blocked weekend: Events nicht auf blockierten Wochenenden
-- FIE fixed: FIE-Events auf festen Terminen
-- qb equivalent overlap: Keine Überlappungen bei Qualifikationsturnieren
-- min weeks between tournaments: Mindestabstand zwischen Turnieren derselben Kategorie
-- even monthly distribution: Gleichmäßige Verteilung
-- preferred date reward: Bonus (+20) wenn ein Turnier auf einen bevorzugten Wunschtermin des Ausrichters gelegt wird
+--- Soft-Constraints (größte Faktoren zuerst) ---
+  Constraint                               Score    Matches
+  even monthly distribution               -15085        371
+  min weeks between tournaments             -330         17
+  athlete overlap (fixed, info)              -18         18
+  qb equivalent overlap (fixed, info)         -2          2
+  preferred date reward                       20          1
+
+--- Legende ---
+Score:   Gesamtauswirkung des Constraints auf den Score
+         Hard < 0 = Verletzung (muss gelöst werden)
+         Soft < 0 = Strafe (Optimierungspotenzial)
+         Soft > 0 = Belohnung (z.B. Wunschtermine)
+Matches: Anzahl betroffener Event-Kombinationen

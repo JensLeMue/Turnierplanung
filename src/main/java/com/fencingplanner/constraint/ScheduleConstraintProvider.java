@@ -50,8 +50,10 @@ fixedFIE(factory),
 fixedEFC(factory),
 fixedDM(factory),
 qbEquivalentOverlap(factory),
+qbEquivalentOverlapFixed(factory),
 venueAvailability(factory),
 athleteOverlap(factory),
+athleteOverlapFixed(factory),
             minWeeksBetweenTournaments(factory),
 dmWeekendConstraints(factory),
 dmBeforeEmWm(factory),
@@ -138,6 +140,7 @@ return factory.forEach(Event.class)
     /**
      * HARD: Qualifikationsturniere (QB) dürfen nicht am selben Wochenende stattfinden,
      * wenn Athleten aufgrund überlappender Altersklassen an beiden teilnehmen könnten.
+     * Gilt nur wenn mindestens eines der Events verschiebbar ist.
      * FIE-Events ohne QB-Wertung sind ausgenommen.
      */
     private Constraint qbEquivalentOverlap(ConstraintFactory factory){
@@ -146,6 +149,9 @@ return factory.forEachUniquePair(Event.class,
 Joiners.equal(Event::getWeekend))
 
 .filter((a,b)->
+// Mindestens ein Event muss verschiebbar sein
+(a.getFixedWeekend() == null || b.getFixedWeekend() == null)
+&&
 (a.isCountsAsNationalQ() || b.isCountsAsNationalQ())
 &&
 !( (a.getClub().getName().equals("FIE") && !a.isCountsAsNationalQ()) || (b.getClub().getName().equals("FIE") && !b.isCountsAsNationalQ()) )
@@ -157,6 +163,32 @@ b.getAgeCategory().canStartIn(a.getAgeCategory()))
 )
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("qb equivalent overlap");
+
+}
+
+    /**
+     * SOFT: Warnung für QB-Überlappung zwischen zwei fixen Events (beide nicht verschiebbar).
+     */
+    private Constraint qbEquivalentOverlapFixed(ConstraintFactory factory){
+
+return factory.forEachUniquePair(Event.class,
+Joiners.equal(Event::getWeekend))
+
+.filter((a,b)->
+// Beide Events sind fix
+a.getFixedWeekend() != null && b.getFixedWeekend() != null
+&&
+(a.isCountsAsNationalQ() || b.isCountsAsNationalQ())
+&&
+!( (a.getClub().getName().equals("FIE") && !a.isCountsAsNationalQ()) || (b.getClub().getName().equals("FIE") && !b.isCountsAsNationalQ()) )
+&&
+(a.getAgeCategory().canStartIn(b.getAgeCategory())
+||
+b.getAgeCategory().canStartIn(a.getAgeCategory()))
+
+)
+
+.penalize(HardSoftScore.ONE_SOFT).asConstraint("qb equivalent overlap (fixed, info)");
 
 }
 
@@ -200,6 +232,7 @@ return false;
 
     /**
      * HARD: Keine zwei Events mit überlappenden Altersklassen am selben Wochenende.
+     * Gilt nur wenn mindestens eines der Events verschiebbar ist.
      * Überlappung wird über AgeCategory.canStartIn() bestimmt (z.B. U17-Athleten
      * dürfen auch bei U20/U23/SEN starten → diese Events dürfen nicht kollidieren).
      */
@@ -209,14 +242,39 @@ return factory.forEachUniquePair(Event.class,
 Joiners.equal(Event::getWeekend))
 
 .filter((a,b)->
-
-a.getAgeCategory().canStartIn(b.getAgeCategory())
+// Mindestens ein Event muss verschiebbar sein
+(a.getFixedWeekend() == null || b.getFixedWeekend() == null)
+&&
+(a.getAgeCategory().canStartIn(b.getAgeCategory())
 ||
-b.getAgeCategory().canStartIn(a.getAgeCategory())
+b.getAgeCategory().canStartIn(a.getAgeCategory()))
 
 )
 
 .penalize(HardSoftScore.ONE_HARD).asConstraint("athlete overlap");
+
+}
+
+    /**
+     * SOFT: Warnung für Altersklassen-Überlappung zwischen zwei fixen Events (beide nicht verschiebbar).
+     * Dient als Info-Constraint – diese Konflikte sind durch die externen Termine unvermeidbar.
+     */
+    private Constraint athleteOverlapFixed(ConstraintFactory factory){
+
+return factory.forEachUniquePair(Event.class,
+Joiners.equal(Event::getWeekend))
+
+.filter((a,b)->
+// Beide Events sind fix
+a.getFixedWeekend() != null && b.getFixedWeekend() != null
+&&
+(a.getAgeCategory().canStartIn(b.getAgeCategory())
+||
+b.getAgeCategory().canStartIn(a.getAgeCategory()))
+
+)
+
+.penalize(HardSoftScore.ONE_SOFT).asConstraint("athlete overlap (fixed, info)");
 
 }
 

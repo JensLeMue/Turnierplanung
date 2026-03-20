@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.fencingplanner.model.Event;
 import com.fencingplanner.model.Schedule;
 import com.fencingplanner.model.Weekend;
 
 import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
+import ai.timefold.solver.core.api.score.constraint.ConstraintMatch;
 import ai.timefold.solver.core.api.score.constraint.ConstraintMatchTotal;
 import ai.timefold.solver.core.api.solver.SolutionManager;
 import ai.timefold.solver.core.api.solver.Solver;
@@ -77,8 +79,29 @@ public class App {
             for (ConstraintMatchTotal<HardSoftScore> c : hardConstraints) {
                 System.out.println(String.format("  %-35s %10d %10d",
                         c.getConstraintRef().constraintName(), c.getScore().hardScore(), c.getConstraintMatchCount()));
-            }
-        }
+            }            // Detailausgabe: welche Event-Paare sind betroffen?
+            System.out.println("\n--- Hard-Constraint-Details (betroffene Events) ---");
+            for (ConstraintMatchTotal<HardSoftScore> c : hardConstraints) {
+                System.out.println("\n  [" + c.getConstraintRef().constraintName() + "]");
+                for (ConstraintMatch<HardSoftScore> match : c.getConstraintMatchSet()) {
+                    List<Object> justification = match.getIndictedObjectList();
+                    StringBuilder sb = new StringBuilder("    ");
+                    for (Object obj : justification) {
+                        if (obj instanceof Event ev) {
+                            String pinned = ev.getFixedWeekend() != null ? " [FIXED]" : "";
+                            String date = ev.getWeekend() != null ? ev.getWeekend().getDate().toString() : "UNASSIGNED";
+                            sb.append(ev.getName()).append(" (").append(ev.getType()).append(" ").append(ev.getAgeCategory())
+                              .append(", ").append(date).append(pinned).append(")  vs  ");
+                        }
+                    }
+                    // Trailing " vs " entfernen
+                    String detail = sb.toString();
+                    if (detail.endsWith("  vs  ")) {
+                        detail = detail.substring(0, detail.length() - 6);
+                    }
+                    System.out.println(detail);
+                }
+            }        }
 
         System.out.println("\n--- Soft-Constraints (größte Faktoren zuerst) ---");
         if (softConstraints.isEmpty()) {

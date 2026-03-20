@@ -44,7 +44,7 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 
 ## Voraussetzungen
 
-- **Java** 17+
+- **Java** 25+
 - **Maven** 3.8+
 
 ## Build & Ausführung
@@ -103,7 +103,7 @@ src/main/java/com/fencingplanner/
 └── model/
     ├── AgeCategory.java              # Enum der Altersklassen mit Startberechtigung
     ├── Club.java                     # Verein / Organisation
-    ├── Event.java                    # Turnier (Planning Entity)
+    ├── Event.java                    # Turnier (Planning Entity, @PlanningPin für fixe Events)
     ├── Schedule.java                 # Gesamtplan (Planning Solution)
     └── Weekend.java                  # Wochenende (Planning Variable Range)
 ```
@@ -134,8 +134,9 @@ Die gleiche Aufschlüsselung wird auch auf der Konsole ausgegeben.
 
 ## Technologie-Stack
 
-- **Java 17**
-- **Timefold Solver 1.26.0** – Constraint-Satisfaction / Optimierung
+- **Java 25**
+- **Timefold Solver 1.32.0** – Constraint-Satisfaction / Optimierung
+- **Apache POI 5.5.1** – Excel-Export
 - **Maven** – Build-Management
 - **Algorithmen**: First Fit (Konstruktion) + Tabu Search (lokale Suche)
 
@@ -143,9 +144,9 @@ Die gleiche Aufschlüsselung wird auch auf der Konsole ausgegeben.
 
 Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierbar:
 
-- **Termination**: 30 s Konstruktion + 60 s lokale Suche
+- **Termination**: 120 s Konstruktion + 60 s lokale Suche
 - **Construction Heuristic**: FIRST_FIT
-- **Local Search**: TABU_SEARCH mit Entity-Tabu-Größe 5
+- **Local Search**: TABU_SEARCH
 
 ## Lizenz
 *to do* Lizenz ergänzen.
