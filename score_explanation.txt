@@ -15,9 +15,431 @@ Overall Score: 0hard/-15415soft
   qb equivalent overlap (fixed, info)         -2          2
   preferred date reward                       20          1
 
+  --- Details ---
+
+  [even monthly distribution] (Score: -15085, Matches: 371)
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  → -7 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  → -21 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Doha (FIE SEN, 2027-01-23 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  → -35 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  → -70 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  → -35 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  → -21 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  → -7 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  → -84 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  → -49 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  → -35 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  → -21 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  FIE_Astana (FIE SEN, 2027-03-27 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -126 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -91 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -77 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -63 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -28 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  → -14 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -140 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -105 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -91 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -77 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -42 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  → -28 soft
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  FIE_Bern (FIE SEN, 2027-05-22 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_SanJose (FIE U20, 2026-11-14 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  → -14 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Basel (FIE U20, 2027-01-02 [FIXED])  → -35 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Basel (FIE U20, 2027-01-02 [FIXED])  → -21 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_Basel (FIE U20, 2027-01-02 [FIXED])  → -7 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  FIE_Basel (FIE U20, 2027-01-02 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Manama (FIE U20, 2027-01-16 [FIXED])  → -49 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Manama (FIE U20, 2027-01-16 [FIXED])  → -35 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_Manama (FIE U20, 2027-01-16 [FIXED])  → -21 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  FIE_Manama (FIE U20, 2027-01-16 [FIXED])  → -7 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  FIE_Manama (FIE U20, 2027-01-16 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  → -63 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  → -49 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  → -35 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  → -21 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  FIE_Cairo (FIE U20, 2027-01-30 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -84 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -70 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -56 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -42 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -21 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  → -7 soft
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -14 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -56 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -49 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -70 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -35 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -21 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -7 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -112 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -105 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -28 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -84 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -49 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -35 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -21 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -126 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -119 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -42 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -105 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -70 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -56 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -42 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -7 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -147 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -140 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -63 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  → -7 soft
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -140 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -105 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -91 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -77 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -42 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -28 soft
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -182 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -175 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -98 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -42 soft
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -28 soft
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -7 soft
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Oslo (EFC U23, 2026-12-05 [FIXED])
+    EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])  vs  EFC_Oslo (EFC U23, 2026-12-05 [FIXED])
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])
+    EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])  vs  EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])
+    EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  vs  EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])  → -7 soft
+    EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])  vs  EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])
+    EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  vs  EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])
+    EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])  vs  EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -70 soft
+    EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -63 soft
+    EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -49 soft
+    EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -42 soft
+    EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -35 soft
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Budapest (EFC U17, 2026-11-14 [FIXED])
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Budapest (EFC U17, 2026-11-14 [FIXED])
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  → -14 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  → -7 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  → -21 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  → -14 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -63 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -56 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -35 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -21 soft
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -14 soft
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -77 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -70 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -49 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -35 soft
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -28 soft
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  → -91 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  → -84 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  → -63 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  → -49 soft
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  → -42 soft
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  EFC_Krakow (EFC U17, 2027-02-13 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -154 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -119 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -105 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -91 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -56 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -42 soft
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -196 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -189 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -112 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -56 soft
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -42 soft
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  → -21 soft
+    EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  vs  EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -147 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -133 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -119 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -105 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -84 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -70 soft
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -56 soft
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  → -35 soft
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -210 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -203 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -182 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -168 soft
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -161 soft
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -119 soft
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -105 soft
+    EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  vs  EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  → -91 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -196 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -161 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -147 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -133 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -98 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -84 soft
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -42 soft
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -28 soft
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -238 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -231 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -154 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -98 soft
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -84 soft
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -63 soft
+    EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -28 soft
+    EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  vs  FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  → -14 soft
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -133 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -119 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -105 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -91 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -70 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -56 soft
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -42 soft
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  → -21 soft
+    EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  vs  FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -175 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -140 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -126 soft
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -112 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -77 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -63 soft
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -21 soft
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -7 soft
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -217 soft
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -210 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -133 soft
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -77 soft
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -63 soft
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -42 soft
+    EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])  → -7 soft
+    EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])
+    FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  vs  DM_Finals (DM SEN, 2027-06-26 [FIXED])
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    DM_Finals (DM SEN, 2027-06-26 [FIXED])  vs  QB_SEN_1 (QB SEN, 2026-09-12)
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Heidenheim (FIE SEN, 2027-02-06 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Medellin (FIE SEN, 2027-05-08 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Zagreb (EFC SEN, 2027-04-17 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_EM_Senioren (EFC SEN, 2027-06-05 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    FIE_WM_Senioren (FIE SEN, 2027-07-17 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    DM_Finals (DM SEN, 2027-06-26 [FIXED])  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    QB_SEN_1 (QB SEN, 2026-09-12)  vs  QB_SEN_2 (QB SEN, 2026-10-03)
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  vs  QB_U17_3 (QB U17, 2026-09-05)
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  vs  QB_U17_4 (QB U17, 2026-09-19)
+    QB_U17_3 (QB U17, 2026-09-05)  vs  QB_U17_4 (QB U17, 2026-09-19)
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  vs  QB_U17_5 (QB U17, 2026-09-26)
+    QB_U17_3 (QB U17, 2026-09-05)  vs  QB_U17_5 (QB U17, 2026-09-26)
+    QB_U17_4 (QB U17, 2026-09-19)  vs  QB_U17_5 (QB U17, 2026-09-26)
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  vs  QB_U20_6 (QB U20, 2026-10-10)
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)
+    QB_U20_6 (QB U20, 2026-10-10)  vs  QB_U20_7 (QB U20, 2026-11-07)
+    CHALLENGE_U15_8 (CHALLENGE U15, 2027-03-27)  vs  CHALLENGE_U15_9 (CHALLENGE U15, 2027-02-06)
+    CHALLENGE_U15_8 (CHALLENGE U15, 2027-03-27)  vs  CHALLENGE_U15_10 (CHALLENGE U15, 2027-02-27)
+    CHALLENGE_U15_9 (CHALLENGE U15, 2027-02-06)  vs  CHALLENGE_U15_10 (CHALLENGE U15, 2027-02-27)
+    CHALLENGE_U15_8 (CHALLENGE U15, 2027-03-27)  vs  CHALLENGE_U15_11 (CHALLENGE U15, 2027-03-06)
+    CHALLENGE_U15_9 (CHALLENGE U15, 2027-02-06)  vs  CHALLENGE_U15_11 (CHALLENGE U15, 2027-03-06)
+    CHALLENGE_U15_10 (CHALLENGE U15, 2027-02-27)  vs  CHALLENGE_U15_11 (CHALLENGE U15, 2027-03-06)
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -168 soft
+    EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -161 soft
+    EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -140 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -126 soft
+    EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -119 soft
+    EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -77 soft
+    EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -63 soft
+    EFC_Krakow (EFC U17, 2027-02-13 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)  → -49 soft
+    EFC_EM_U17 (EFC U17, 2027-06-12 [FIXED])  vs  DM_U17_13 (DM U17, 2027-05-01)
+    QB_U17_3 (QB U17, 2026-09-05)  vs  DM_U17_13 (DM U17, 2027-05-01)  → -210 soft
+    QB_U17_4 (QB U17, 2026-09-19)  vs  DM_U17_13 (DM U17, 2027-05-01)  → -196 soft
+    QB_U17_5 (QB U17, 2026-09-26)  vs  DM_U17_13 (DM U17, 2027-05-01)  → -189 soft
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -126 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -112 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -98 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -84 soft
+    FIE_Basel (FIE U20, 2027-01-02 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -63 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -49 soft
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -35 soft
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -14 soft
+    EFC_EM_U20 (EFC U20, 2027-04-24 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)
+    FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)
+    QB_U20_6 (QB U20, 2026-10-10)  vs  DM_U20_15 (DM U20, 2027-04-03)  → -147 soft
+    QB_U20_7 (QB U20, 2026-11-07)  vs  DM_U20_15 (DM U20, 2027-04-03)  → -119 soft
+    CHALLENGE_U15_8 (CHALLENGE U15, 2027-03-27)  vs  DM_U15_16 (DM U15, 2027-04-03)
+    CHALLENGE_U15_9 (CHALLENGE U15, 2027-02-06)  vs  DM_U15_16 (DM U15, 2027-04-03)  → -28 soft
+    CHALLENGE_U15_10 (CHALLENGE U15, 2027-02-27)  vs  DM_U15_16 (DM U15, 2027-04-03)  → -7 soft
+    CHALLENGE_U15_11 (CHALLENGE U15, 2027-03-06)  vs  DM_U15_16 (DM U15, 2027-04-03)
+
+  [min weeks between tournaments] (Score: -330, Matches: 17)
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  → -15 soft
+    FIE_Fujairah (FIE SEN, 2027-01-09 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -15 soft
+    FIE_Doha (FIE SEN, 2027-01-23 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -15 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -30 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -30 soft
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -30 soft
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Lausanne (EFC U23, 2026-11-21 [FIXED])  → -15 soft
+    EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  vs  EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])  → -15 soft
+    EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])  vs  EFC_Thessaloniki (EFC U23, 2026-12-19 [FIXED])  → -15 soft
+    EFC_Napoli (EFC U17, 2026-10-17 [FIXED])  vs  EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  → -15 soft
+    EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  → -15 soft
+    QB_U17_4 (QB U17, 2026-09-19)  vs  QB_U17_5 (QB U17, 2026-09-26)  → -15 soft
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)  → -15 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  QB_U20_7 (QB U20, 2026-11-07)  → -15 soft
+    CHALLENGE_U15_10 (CHALLENGE U15, 2027-02-27)  vs  CHALLENGE_U15_11 (CHALLENGE U15, 2027-03-06)  → -30 soft
+    FIE_WM_U20 (FIE U20, 2027-04-10 [FIXED])  vs  DM_U20_15 (DM U20, 2027-04-03)  → -15 soft
+    CHALLENGE_U15_8 (CHALLENGE U15, 2027-03-27)  vs  DM_U15_16 (DM U15, 2027-04-03)  → -30 soft
+
+  [athlete overlap (fixed, info)] (Score: -18, Matches: 18)
+    FIE_SanSalvador (FIE U20, 2026-10-31 [FIXED])  vs  EFC_Colmar (EFC SEN, 2026-10-31 [FIXED])  → -1 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  → -1 soft
+    FIE_Budapest (FIE SEN, 2027-03-13 [FIXED])  vs  EFC_Differdange (EFC SEN, 2027-03-13 [FIXED])  → -1 soft
+    FIE_Astana (FIE SEN, 2027-03-27 [FIXED])  vs  EFC_Daugavpils (EFC SEN, 2027-03-27 [FIXED])  → -1 soft
+    FIE_Bern (FIE SEN, 2027-05-22 [FIXED])  vs  EFC_Kamnik (EFC SEN, 2027-05-22 [FIXED])  → -1 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  → -1 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  → -1 soft
+    FIE_Tashkent (FIE U20, 2026-12-12 [FIXED])  vs  EFC_Laupheim (EFC U23, 2026-12-12 [FIXED])  → -1 soft
+    FIE_Vrsac (FIE U20, 2027-02-20 [FIXED])  vs  EFC_Sofia (EFC U23, 2027-02-20 [FIXED])  → -1 soft
+    EFC_Dublin (EFC SEN, 2026-10-24 [FIXED])  vs  EFC_Klagenfurt (EFC U17, 2026-10-24 [FIXED])  → -1 soft
+    FIE_SanJose (FIE U20, 2026-11-14 [FIXED])  vs  EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  → -1 soft
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  → -1 soft
+    FIE_Hongkong (FIE U20, 2026-11-28 [FIXED])  vs  EFC_Grenoble (EFC U17, 2026-11-28 [FIXED])  → -1 soft
+    FIE_Vancouver (FIE SEN, 2026-12-05 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  → -1 soft
+    EFC_Oslo (EFC U23, 2026-12-05 [FIXED])  vs  EFC_Copenhagen (EFC U17, 2026-12-05 [FIXED])  → -1 soft
+    FIE_Manama (FIE U20, 2027-01-16 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -1 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -1 soft
+    FIE_Cairo (FIE U20, 2027-01-30 [FIXED])  vs  EFC_Belgrade (EFC U17, 2027-01-30 [FIXED])  → -1 soft
+
+  [qb equivalent overlap (fixed, info)] (Score: -2, Matches: 2)
+    EFC_Brindisi (EFC U23, 2026-11-14 [FIXED])  vs  EFC_Budapest (EFC U17, 2026-11-14 [FIXED])  → -1 soft
+    EFC_Berlin (EFC SEN, 2027-01-16 [FIXED])  vs  EFC_Bratislava (EFC U17, 2027-01-16 [FIXED])  → -1 soft
+
+  [preferred date reward] (Score: 20, Matches: 1)
+    QB_U17_5 (QB U17, 2026-09-26)  → +20 soft
+
 --- Legende ---
 Score:   Gesamtauswirkung des Constraints auf den Score
          Hard < 0 = Verletzung (muss gelöst werden)
          Soft < 0 = Strafe (Optimierungspotenzial)
          Soft > 0 = Belohnung (z.B. Wunschtermine)
 Matches: Anzahl betroffener Event-Kombinationen
+[FIXED]: Event mit festem Termin (nicht verschiebbar)

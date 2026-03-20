@@ -141,6 +141,14 @@ public class App {
                     writer.println(String.format("  %-35s %10d %10d",
                             c.getConstraintRef().constraintName(), c.getScore().softScore(), c.getConstraintMatchCount()));
                 }
+                writer.println("\n  --- Details ---");
+                for (ConstraintMatchTotal<HardSoftScore> c : softConstraints) {
+                    writer.println("\n  [" + c.getConstraintRef().constraintName()
+                            + "] (Score: " + c.getScore().softScore() + ", Matches: " + c.getConstraintMatchCount() + ")");
+                    for (ConstraintMatch<HardSoftScore> match : c.getConstraintMatchSet()) {
+                        writer.println("    " + formatMatchDetail(match));
+                    }
+                }
             }
 
             writer.println("\n--- Legende ---");
@@ -149,6 +157,7 @@ public class App {
             writer.println("         Soft < 0 = Strafe (Optimierungspotenzial)");
             writer.println("         Soft > 0 = Belohnung (z.B. Wunschtermine)");
             writer.println("Matches: Anzahl betroffener Event-Kombinationen");
+            writer.println("[FIXED]: Event mit festem Termin (nicht verschiebbar)");
         } catch (java.io.FileNotFoundException e) {
             System.err.println("Fehler beim Schreiben der Score-Erklärung: " + e.getMessage());
         }
@@ -217,5 +226,30 @@ public class App {
             System.err.println("Fehler beim Excel-Export: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private static String formatMatchDetail(ConstraintMatch<HardSoftScore> match) {
+        List<Object> objects = match.getIndictedObjectList();
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Object obj : objects) {
+            if (obj instanceof Event ev) {
+                if (!first) sb.append("  vs  ");
+                first = false;
+                String pinned = ev.getFixedWeekend() != null ? " [FIXED]" : "";
+                String date = ev.getWeekend() != null ? ev.getWeekend().getDate().toString() : "UNASSIGNED";
+                sb.append(ev.getName()).append(" (").append(ev.getType()).append(" ").append(ev.getAgeCategory())
+                  .append(", ").append(date).append(pinned).append(")");
+            }
+        }
+        // Score des einzelnen Matches anhängen
+        HardSoftScore score = match.getScore();
+        if (score.hardScore() != 0) {
+            sb.append("  → ").append(score.hardScore()).append(" hard");
+        }
+        if (score.softScore() != 0) {
+            sb.append("  → ").append(score.softScore() > 0 ? "+" : "").append(score.softScore()).append(" soft");
+        }
+        return sb.toString();
     }
 }
