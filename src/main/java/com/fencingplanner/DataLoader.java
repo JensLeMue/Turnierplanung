@@ -210,25 +210,33 @@ public class DataLoader {
                 // Bevorzugte Termine mit * markiert extrahieren
                 String venueAvailability;
                 String preferredDates = null;
-                if (!rawAvailability.equals("all")) {
+
+                // Erst bevorzugte Termine aus allen Einträgen extrahieren
+                List<String> preferred = new ArrayList<>();
+                for (String d : rawAvailability.split(";")) {
+                    String trimmed = d.trim();
+                    if (trimmed.endsWith("*")) {
+                        preferred.add(trimmed.substring(0, trimmed.length() - 1));
+                    }
+                }
+                if (!preferred.isEmpty()) {
+                    preferredDates = String.join(";", preferred);
+                }
+
+                if (rawAvailability.contains("all")) {
+                    // "all" oder "all;2027-04-17*;2027-04-24*" → alle Wochenenden verfügbar
+                    venueAvailability = "all";
+                } else {
                     List<String> allDates = new ArrayList<>();
-                    List<String> preferred = new ArrayList<>();
                     for (String d : rawAvailability.split(";")) {
                         String trimmed = d.trim();
                         if (trimmed.endsWith("*")) {
-                            String date = trimmed.substring(0, trimmed.length() - 1);
-                            allDates.add(date);
-                            preferred.add(date);
+                            allDates.add(trimmed.substring(0, trimmed.length() - 1));
                         } else {
                             allDates.add(trimmed);
                         }
                     }
                     venueAvailability = String.join(";", allDates);
-                    if (!preferred.isEmpty()) {
-                        preferredDates = String.join(";", preferred);
-                    }
-                } else {
-                    venueAvailability = rawAvailability;
                 }
 
                 Club club = clubs.get(clubName);
