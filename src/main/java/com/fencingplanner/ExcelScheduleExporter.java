@@ -18,8 +18,9 @@ public class ExcelScheduleExporter {
     static {
         TYPE_COLORS.put("FIE", new short[]{192, 0, 0});        // Rot
         TYPE_COLORS.put("EFC", new short[]{0, 112, 192});      // Blau
-        TYPE_COLORS.put("National", new short[]{0, 176, 80});  // Grün
-        TYPE_COLORS.put("Regional", new short[]{255, 192, 0}); // Orange
+        TYPE_COLORS.put("QB", new short[]{0, 176, 80});        // Grün
+        TYPE_COLORS.put("CHALLENGE", new short[]{0, 176, 80}); // Grün
+        TYPE_COLORS.put("DM", new short[]{255, 192, 0});       // Orange
     }
 
     private final Schedule schedule;

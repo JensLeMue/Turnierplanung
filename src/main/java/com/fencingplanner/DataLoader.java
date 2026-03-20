@@ -131,7 +131,7 @@ public class DataLoader {
     private List<Event> loadFixedEvents(List<Weekend> weekends) {
 
         List<Event> events = new ArrayList<>();
-        long eventIdCounter = 1;
+        long eventIdCounter = 1; // Fixe Events: IDs 1-999
 
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(
@@ -188,7 +188,7 @@ public class DataLoader {
     private List<Event> loadApplications() {
 
         List<Event> events = new ArrayList<>();
-        long eventIdCounter = 1000;
+        long eventIdCounter = 1000; // Bewerbungs-Events: IDs ab 1000
 
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(

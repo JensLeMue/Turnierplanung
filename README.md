@@ -43,9 +43,9 @@ Jede Saison müssen nationale Fecht-Turniere auf die verfügbaren Wochenenden ve
 
 ### Geplante Erweiterungen
 
-- DM am Saisonende mit kombinierten Altersklassen (U20+U15 etc.)
 - Damen- und Herrenwettbewerbe am selben Wochenende
 - Streckenoptimierung für gleichmäßige geografische Verteilung
+- U14-Turniere einpflegen
 
 ## Voraussetzungen
 
@@ -62,7 +62,7 @@ mvn clean package
 mvn exec:java -Dexec.mainClass="com.fencingplanner.App"
 ```
 
-Der Solver läuft ca. 90 Sekunden (30 s Construction Heuristic + 60 s Tabu Search) und gibt den optimierten Turnierplan auf der Konsole aus.
+Der Solver läuft ca. 30 Sekunden (Construction Heuristic + 30 s Tabu Search) und gibt den optimierten Turnierplan auf der Konsole aus.
 
 ## Eingabedaten (CSV)
 
@@ -149,12 +149,9 @@ Die gleiche Aufschlüsselung wird auch auf der Konsole ausgegeben.
 
 Die Solver-Parameter sind in `src/main/resources/solverConfig.xml` konfigurierbar:
 
-- **Termination**: 120 s Konstruktion + 60 s lokale Suche
+- **Termination**: 30 s Konstruktion + 30 s lokale Suche
 - **Construction Heuristic**: FIRST_FIT
 - **Local Search**: TABU_SEARCH
 
 ## Lizenz
 *to do* Lizenz ergänzen.
-
-
-- U14 Turniere müssen eingepflegt werdn in die csv

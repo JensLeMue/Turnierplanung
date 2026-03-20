@@ -19,6 +19,8 @@ import ai.timefold.solver.core.api.solver.SolverFactory;
 
 public class App {
 
+    // Feiertage für die Anzeige in der Wochenend-Übersicht.
+    // Das tatsächliche Blocken der Wochenenden erfolgt über weekends.csv (blocked=true).
     private static final Map<java.time.LocalDate, String> HOLIDAYS = new HashMap<>();
 
     static {
